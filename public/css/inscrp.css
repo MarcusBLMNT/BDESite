@@ -1,0 +1,62 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #fff;
+    
+   background-image: url(../images/Capture.PNG);
+    background-size: 50%;
+}
+
+.inscrip {
+    background: rgba(252, 108, 13, 0.897);
+    padding: 40px;
+    width: 320px;
+    margin: auto;
+    margin-top: 100px;
+    height: 550px;
+    
+    margin-left: 800px;
+    border:3px double white;
+    
+   
+}
+form {
+    width: 240px;
+    text-align: center;
+}
+input {
+    width:240px ;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-family: 'Play', sans-serif;
+    font-size: 16px;
+    font-weight: 200px;
+    padding: 10px 0 ;
+    transition: border 0.5s;
+    outline: none;
+    color: white;
+}
+input[type=button]{
+    border: white;
+    width: 190px;
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 15px;
+    cursor: pointer;
+}
+input[type=button]:hover{
+    color: #fff;
+    background-color: rgb(12, 12, 11);
+}
+h2{
+    color: white;
+}
+
+::placeholder{
+    color: aliceblue;
+    opacity: 0.8 ;
+}

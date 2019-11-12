@@ -1,0 +1,87 @@
+
+html{
+    height:100%;
+}
+body{
+    height:100%;
+}
+footer {
+    padding-right:10px;
+    vertical-align:center;  
+    padding-top:5px; 
+    padding-left:50px;
+    background-color:black; 
+    border-top-right-radius:50px;  
+    
+ }
+ #contenu{
+     
+    min-height:100%;    
+ 
+ }
+ .logoReseaux{
+     align-content:left;
+     height: 50px;
+     width:50px;
+     padding-top:10px;
+     padding-right:2%;
+     margin-bottom:20px;
+     transition:height 1s, width 1s, padding 1s, margin 1s;
+     display:inline-block;
+ }
+ .logoReseaux:hover{
+     margin-left:0px;
+    
+     padding-top:0px;
+     margin-top:0;
+    
+     height:60px;
+     width:60px;
+     transition-duration: 0.2s;
+ }
+
+
+ #mentionsLegales{
+     padding-right:50px;    
+     padding-top:15px;
+    
+     
+    margin-right:0; 
+    text-align:right;
+    
+    
+    
+ }
+ #mlLien{
+     text-decoration:none;
+     color:white;
+     text-decoration:underline;
+     
+ }
+ #mlLien:hover{
+    color:orange;     
+    text-decoration:underline;
+
+ }
+ .noDecoration{
+    text-decoration:none;
+ }
+ @media screen and (max-width: 767px) {
+    #mentionsLegales{
+        text-align:center;
+        margin:0;
+        padding:0;
+    }
+    footer{
+        padding:10px;
+    }
+    #reseaux{
+        margin-left:0;
+        text-align:center;
+    }
+   
+   
+  }
+ 
+
+
