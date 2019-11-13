@@ -9,12 +9,11 @@
 <body>
     <header>
         <?php
-        $id = 1;
-        if ($id != NULL) {
-            include('../includes/headerOn.html');
-        } else {
-            include('../includes/headerOff.html');
-        }
+
+        include('../includes/header.php');
+
+
+
 
         include('../includes/menu.php'); ?>
     </header>
