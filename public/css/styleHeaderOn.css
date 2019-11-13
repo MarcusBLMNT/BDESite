@@ -52,7 +52,7 @@ nav ul li a{
 	border-radius: 40px;
 }
 
-a:hover{
+.menu a:hover{
 	color: orange;
 }
 
