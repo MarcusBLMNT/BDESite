@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../public/api/jsonUnicode.php');
-$_SESSION['pseudo'] = null;
+$_SESSION['pseudo'] = "elise";
 $_SESSION['motDePasse'] = "mdp";
 
 if (
@@ -33,11 +33,11 @@ if (
                 $adresseBDDJsonParsed->{"port"} . ';dbname=' . $adresseBDDJsonParsed->{"dbname"} .
                 ';', $adresseBDDJsonParsed->{"pseudo"}, $adresseBDDJsonParsed->{"mdp"});
 
-            $requete = $bdd->prepare("SELECT article.nom as nomArticle, article.prix as prixArticle 
-            from utilisateur join commande on utilisateur.id=commande.id_Utilisateur 
-            join commandearticle on commande.id=commandearticle.id_commande join article 
-            on commandearticle.id_Article=article.id where utilisateur.pseudo=\"" . $_SESSION['pseudo'] . "\"
-            and commande.faite=1 ");
+            $requete = $bdd->prepare("SELECT article.nom as nomArticle, article.prix as prixArticle ,
+            quantite from utilisateur join commande on utilisateur.id=commande.id_Utilisateur join
+            commandearticle on commande.id=commandearticle.id_commande join article on
+            commandearticle.id_Article=article.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\" and commande.faite=0
+            ");
 
             $requete->execute();
 
@@ -52,7 +52,17 @@ if (
             if (empty($contenuPanier)) {
                 echo "votre panier est vide";
             } else {
-                print_r($contenuPanier);
+                $total = 0;
+                foreach ($contenuPanier as $article) {
+
+                    $artXquant = (int) $article["prixArticle"] * (int) $article["quantite"];
+                    echo ($article["nomArticle"] . " : " . $article["prixArticle"] . "€ * " . $article["quantite"] . " = " . $artXquant . "€ </br>");
+                    $total += $artXquant;
+                }
+                echo "</br><h4>total = " . $total . "€</h4>";
+                ?>
+            <button>payer</button>
+        <?php
             }
 
 

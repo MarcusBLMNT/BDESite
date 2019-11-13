@@ -12,12 +12,12 @@
 include('../includes/headerOn.html'); ?>
 
 <div class="row">
-    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" style="margin-left:0">
+    <div class="col-2" style="margin-left:0">
         <?php
         include('../includes/menu.php');
         ?>
     </div>
-    <div class="">
+    <div class="col-10" style="margin-left:0">
         <?php
         //inserez vos includes
         ?>

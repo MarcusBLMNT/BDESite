@@ -11,8 +11,7 @@
 .BarreMnu {
  display: flex;
  position: relative;
- min-height:100vh;
-
+ height:100%;
  
 }
 .dropmenu ul{
@@ -45,7 +44,7 @@
 .BarreMnu .sidebar{
 
     width: 200px;
-    min-height:100vh;
+    height:100%;
     background: #000000;
     padding: 100px 0;
 
