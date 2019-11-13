@@ -20,10 +20,7 @@ include('../includes/headerOn.html'); ?>
     </div>
     <div class="col-md-10" style="margin-left:0">
         <?php
-
-        include('../includes/panier.php');
-
-
+              include('../includes/mentions.html');
         ?>
 
 
