@@ -1,0 +1,72 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    list-style:none;
+    text-decoration:none;
+    font-family:'Josefin Sans', sans-serif;
+}
+
+
+.BarreMnu {
+ display: flex;
+ position: relative;
+ height:100%;
+ 
+}
+.dropmenu ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+
+
+
+}
+.dropnmenu li:hover ul {
+    display: block ;
+    position: absolute;
+    top: 36px; 
+    left: 0px; 
+    z-index: 100; 
+}
+.BarreMnu .sidebar h2{
+    color: #F4F4F4;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px ;
+
+}
+.navi{
+    color: #F4F4F4;
+
+}
+
+.BarreMnu .sidebar{
+
+    width: 200px;
+    height:2000%;
+    background: #000000;
+    padding: 100px 0;
+
+}
+ .BarreMnu .sidebar ul li{
+     padding: 15px;
+     border-bottom:1px solig rgba (0,0,0,0.05);
+     border-top:1px solig rgba (225,225,225,0.05);
+ }
+ .BarreMnu .sidebar ul li a{
+     color: #bdbdbd;
+     display: block;
+
+ }
+ .BarreMnu .sidebar ul li a .fas {
+     width: 25px;
+
+ }
+ .BarreMnu .sidebar ul li:hover {
+     background: rgb(255, 255, 255);
+ }
+ .BarreMnu .sidebar ul li:hover a{
+    background: #ffffff;
+    color: black;
+}
