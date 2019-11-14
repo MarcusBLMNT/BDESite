@@ -1,10 +1,8 @@
 <?php
 session_start();
-$bdd = new PDO(
-    'mysql:host=localhost;dbname=projetweb;charset=utf8',
-    'root',
-    ''
-);
+include('../includes\bddConnect.php');
+$bdd = bddConnect();
+
 
 $pseudo = $_POST['pseudo'];
 $motDePasse = $_POST['motDePasse'];
@@ -17,7 +15,7 @@ $requete->execute();
 
 if ($requete->fetch() != NULL) {
     $_SESSION['pseudo'] = $pseudo;
-    header('Location: ../public/index.php');
+    header('Location: ../public/indexEvenement.php');
 } else {
     echo "Connexion échouée";
 }

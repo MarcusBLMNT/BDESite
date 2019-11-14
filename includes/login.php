@@ -8,19 +8,12 @@
     <link href="../public/css/login.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
 </head>
-<header>
 
-    <?php
-    include('headerOff.html');
-    include('menu.php');
-
-    ?>
-
-</header>
 
 <body>
 
     <div class="connexion">
+
         <form method="post" action="../script/scriptConnexion.php" autocomplete="off">
             <h2 style="color: white">Connexion</h2>
             <input type="text" id="pseudo" name="pseudo" placeholder="Nom d'utilisateur">
@@ -33,17 +26,13 @@
                     de passe oublié?</a>
 
             </div>
-            <br> <br><br> <br><br> <br>
-            Je n'ai pas de compte:<a href="../includes/inscription.php">S'inscrire</a>
+            <br><br>
+            Je n'ai pas de compte:<a href="../public/indexInscription.php">S'inscrire</a>
         </form>
     </div>
 
 </body>
-<footer>
-    <?php
-    include('footer.html');
-    ?>
-</footer>
+
 
 
 </html>

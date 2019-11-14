@@ -14,7 +14,7 @@
     margin-top: 150px;
     height: 400px;
     
-    margin-left: 500px;
+   
     border:3px double white;
     
    
@@ -63,8 +63,7 @@ a:hover{
     color: rgb(13, 52, 158);
 }
 .container {
-    display: flex;
-    flex-direction: row;
+  
     width: 100%;
 }
 ::placeholder{

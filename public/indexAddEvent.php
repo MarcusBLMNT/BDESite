@@ -1,10 +1,5 @@
-<?php
-session_start();
-?>
 <!doctype html>
-
 <html lang="fr">
-
 
 
 
@@ -25,7 +20,7 @@ include('../includes/header.php'); ?>
     </div>
     <div class="col-10" style="margin-left:0">
         <?php
-
+        include('../includes/addEvent.php');
         ?>
 
     </div>
