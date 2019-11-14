@@ -10,7 +10,7 @@
     <header>
         <?php
 
-        include('../includes/header.php');
+        include('../includes/headerOff.html');
         include('../includes/menu.php'); ?>
     </header>
     <div class="mentions">
