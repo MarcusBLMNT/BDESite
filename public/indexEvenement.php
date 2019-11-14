@@ -20,7 +20,7 @@ include('../includes/header.php'); ?>
     </div>
     <div class="col-10" style="margin-left:0">
         <?php
-        include('../includes/equipe.html');
+        include('../includes/evenement.php')
         ?>
 
     </div>

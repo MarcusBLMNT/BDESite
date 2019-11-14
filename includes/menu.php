@@ -13,7 +13,7 @@
 
             <li><a href="../public/index.php"><i class="fas fa-home"></i>Home</a></li>
 
-            <li ><a href="#"><i class="fas fa-project-diagram"></i>Evenements</a></li>
+            <li ><a href="../includes/evenement.php"><i class="fas fa-project-diagram"></i>Evenements</a></li>
             <ul >
                 <li ><a href="#">Evenements Du Mois</a></li>
                 <li ><a href="#">Evenements Passés</a></li>
