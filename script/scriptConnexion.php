@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $bdd = new PDO(
     'mysql:host=localhost;dbname=projetweb;charset=utf8',
     'root',
@@ -16,6 +16,7 @@ $requete->bindValue(':motDePasse', $motDePasse, PDO::PARAM_STR);
 $requete->execute();
 
 if ($requete->fetch() != NULL) {
+    $_SESSION['pseudo'] = $pseudo;
     header('Location: ../public/index.php');
 } else {
     echo "Connexion échouée";
