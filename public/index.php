@@ -10,7 +10,7 @@
 </head>
 <?php
 
-include('../includes/headerOn.html'); ?>
+include('../includes/header.php'); ?>
 
 <div class="row">
     <div class="col-2" style="margin-left:0">
@@ -31,6 +31,10 @@ include('../includes/headerOn.html'); ?>
 </div>
 
 <?php
+
+
+
+
 
 include('../includes/footer.html');
 

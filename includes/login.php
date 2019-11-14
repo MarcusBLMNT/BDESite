@@ -40,6 +40,10 @@
 
 </body>
 <footer>
+    <?php
+    include('footer.html');
+    ?>
+</footer>
 
 
 </html>
