@@ -22,22 +22,28 @@ if (empty($idAdmin)) {
 
 if (isset($_POST) && !empty($_POST)) {
 
-    if ($_POST['recurrence'] != "0") {
-        $recurrenceNull = 1;
+
+    if ($_POST['recurrence'] == "0") {
+        $requeteAddEvent = $bdd->prepare(
+            "INSERT INTO `evenement` (`id`, `date`, `nom`, `description`, `url_image`, `prix`, `recurrence`, `id_Temporalite`)
+         VALUES  
+         (NULL,\"" . $_POST['date'] . "\", \"" . $_POST['nom'] . "\", \"" . $_POST['description'] . "\", \"" . $_POST['image'] . "\",
+        \"" . $_POST['prix'] . "\", 0,  NULL)"
+        );
     } else {
-        $recurrenceNull = null;
+        $requeteAddEvent = $bdd->prepare(
+            "INSERT INTO `evenement` (`id`, `date`, `nom`, `description`, `url_image`, `prix`, `recurrence`, `id_Temporalite`)
+         VALUES  
+         (NULL,\"" . $_POST['date'] . "\", \"" . $_POST['nom'] . "\", \"" . $_POST['description'] . "\", \"" . $_POST['image'] . "\",
+        \"" . $_POST['prix'] . "\", 1,  " . $_POST['recurrence'] . " )"
+        );
     }
 
 
 
 
 
-    $requeteAddEvent = $bdd->prepare(
-        "INSERT INTO `evenement` (`id`, `date`, `nom`, `description`, `url_image`, `prix`, `recurrence`, `id_Temporalite`)
-     VALUES  
-     (NULL,\"" . $_POST['date'] . "\", \"" . $_POST['nom'] . "\", \"" . $_POST['description'] . "\", \"" . $_POST['image'] . "\",
-    \"" . $_POST['prix'] . "\", \"" . $recurrenceNull . "\", \"" . $_POST['recurrence'] . "\")"
-    );
+
     if ($requeteAddEvent->execute()) {
         echo ("evenement ajouté");
     }
@@ -72,7 +78,7 @@ if (isset($_POST) && !empty($_POST)) {
             <input type="number" name="prix" placeholder="prix" required="required"><br>
             <label for="recurrence" aria-placeholder="recurence">recurence</label><br />
             <select name="recurrence">
-                <option value=null>non</option>
+                <option value=0>non</option>
                 <option value="1">jour</option>
                 <option value="2">semaine</option>
                 <option value="3">mois</option>
