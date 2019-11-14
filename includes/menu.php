@@ -10,15 +10,19 @@
     <div class="sidebar">
         <h2>Menu</h2>
         <ul class="dropmenu" >
-            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+
+            <li><a href="../public/index.php"><i class="fas fa-home"></i>Home</a></li>
+
             <li ><a href="#"><i class="fas fa-project-diagram"></i>Evenements</a></li>
             <ul >
                 <li ><a href="#">Evenements Du Mois</a></li>
                 <li ><a href="#">Evenements Passés</a></li>
             </ul>
             <li><a href="#"><i class="fas fa-shopping-cart"></i>La Boutique</a></li>
-            <li><a href="#"><i class="fas fa-user-friends"></i>Associations</a></li>
-            <li><a href="#"><i class="fas fa-users"></i></i>Notre équipe</a></li>
+
+            <li><a href="../public/asso.php"><i class="fas fa-user-friends"></i>Associations</a></li>
+            <li><a href="../public/equipe.php"><i class="fas fa-users"></i></i>Notre équipe</a></li>
+
 
         </ul>
     </div>
