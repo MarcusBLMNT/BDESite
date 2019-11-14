@@ -40,10 +40,9 @@
 
 </body>
 <footer>
-    <?php
-    include('footer.html');
-    ?>
-</footer>
+    <<<<<<< HEAD <?php
+                    include('footer.html');
+                    ?> </footer>=======>>>>>>> sofia
 
 
 </html>
