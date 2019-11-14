@@ -1,15 +1,17 @@
-#content{
-    text-decoration:none;
-    width:100%;
-   
-    padding:10px;
-   
-    
-}
 body{
     background-color:rgb(46, 46, 46);
 }
 
 h1{
+	padding: 10px;
     text-align:center;
+}
+
+p{
+	text-align: justify;
+	font-size: 20px;
+	border: solid;
+	border-color: black;
+	padding: 10px;
+	font-weight: bold;
 }

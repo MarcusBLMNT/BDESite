@@ -66,6 +66,7 @@ footer {
  .noDecoration{
     text-decoration:none;
  }
+
  @media screen and (max-width: 767px) {
     #mentionsLegales{
         text-align:center;
