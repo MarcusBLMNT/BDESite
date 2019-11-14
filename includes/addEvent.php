@@ -2,19 +2,23 @@
 
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
-$_SESSION["pseudo"] = "elise";
-//$_SESSION['motDePasse'] = "mdp";
 $bdd = bddConnect();
-$requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
+if (!empty($_SESSION["pseudo"])) {
+
+    $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
 join role on utilisateur.id_Role=role.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\"
 ");
-$requeteAdmin->execute();
-$idAdmin = $requeteAdmin->fetchAll(PDO::FETCH_CLASS);
-$idAdmin = objectToArray($idAdmin);
-if (empty($idAdmin)) {
-    header('Location:indexLogin.php');
-    exit();
-} elseif ($idAdmin[0]["id"] != "1" && $idAdmin[0]["id"] != "3") {
+    $requeteAdmin->execute();
+    $idAdmin = $requeteAdmin->fetchAll(PDO::FETCH_CLASS);
+    $idAdmin = objectToArray($idAdmin);
+    if (empty($idAdmin)) {
+        header('Location:indexLogin.php');
+        exit();
+    } elseif ($idAdmin[0]["id"] != "1" && $idAdmin[0]["id"] != "3") {
+        header('Location:indexLogin.php');
+        exit();
+    }
+} else {
     header('Location:indexLogin.php');
     exit();
 }
