@@ -1,12 +1,11 @@
 <?php
 session_start();
 include('../public/api/jsonUnicode.php');
-$_SESSION['pseudo'] = "elise";
-$_SESSION['motDePasse'] = "mdp";
+
 
 if (
-    !isset($_SESSION['pseudo']) || !isset($_SESSION['motDePasse']) ||
-    empty($_SESSION['pseudo']) || empty($_SESSION['motDePasse'])
+    !isset($_SESSION['pseudo'])  ||
+    empty($_SESSION['pseudo'])
 ) {
     header('Location:indexAccueil.php');
     exit();

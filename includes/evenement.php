@@ -3,7 +3,7 @@
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
 
-//$_SESSION['motDePasse'] = "mdp";
+
 
 
 
@@ -24,10 +24,16 @@ include('../public/api/jsonUnicode.php');
     <?php
 
     $bdd = bddConnect();
-
-    $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
+    if (isset($_SESSION["pseudo"])) {
+        $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
     join role on utilisateur.id_Role=role.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\"
     ");
+        $requeteAdmin->execute();
+        $idAdmin = $requeteAdmin->fetchAll(PDO::FETCH_CLASS);
+        $idAdmin = objectToArray($idAdmin);
+    } else {
+        $idAdmin[0]["id"] = "2";
+    }
 
     $requete = $bdd->prepare("SELECT date , nom, description, url_image, prix, recurrence, periode
             from temporalite RIGHT join evenement on temporalite.id=evenement.id_Temporalite
@@ -37,13 +43,12 @@ include('../public/api/jsonUnicode.php');
     from temporalite RIGHT join evenement on temporalite.id=evenement.id_Temporalite
     where date<CURRENT_DATE order by date DESC
     ");
-    $requeteAdmin->execute();
+
     $requete2->execute();
 
     $requete->execute();
 
-    $idAdmin = $requeteAdmin->fetchAll(PDO::FETCH_CLASS);
-    $idAdmin = objectToArray($idAdmin);
+
     $listeEvenement = $requete->fetchAll(PDO::FETCH_CLASS);
     $listeEvenement = objectToArray($listeEvenement);
     $listeEvenementPasses = $requete2->fetchAll(PDO::FETCH_CLASS);
@@ -82,9 +87,11 @@ include('../public/api/jsonUnicode.php');
             } else {
                 foreach ($listeEvenement as $evt) {
                     printEvt($evt);
-                    ?>
-                    <a href=""><button>participer</button></a>
+                    if (isset($_SESSION["pseudo"])) {
+                        ?>
+                        <a href=""><button>participer</button></a>
             <?php
+                    }
                 }
             }
 
