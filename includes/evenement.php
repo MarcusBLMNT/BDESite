@@ -35,11 +35,11 @@ include('../public/api/jsonUnicode.php');
         $idAdmin[0]["id"] = "2";
     }
 
-    $requete = $bdd->prepare("SELECT date , nom, description, url_image, prix, recurrence, periode
+    $requete = $bdd->prepare("SELECT  evenement.id, date , nom, description, url_image, prix, recurrence, periode
             from temporalite RIGHT join evenement on temporalite.id=evenement.id_Temporalite
             where date>=CURRENT_DATE order by date ASC
             ");
-    $requete2 = $bdd->prepare("SELECT date , nom, description, url_image, prix, recurrence, periode
+    $requete2 = $bdd->prepare("SELECT evenement.id, date, nom, description, url_image, prix, recurrence, periode
     from temporalite RIGHT join evenement on temporalite.id=evenement.id_Temporalite
     where date<CURRENT_DATE order by date DESC
     ");
@@ -69,55 +69,64 @@ include('../public/api/jsonUnicode.php');
 
                 ?>
                 <a href="../public/indexAddEvent.php"><button>Ajouter evenement</button></a>
-                <button>Supprimer evenement</button>
+                <a href="../public/indexSupprEvent.php"><button>Supprimer evenement</button></a>
         <?php
             }
         }
 
         ?>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h2> Evenement en cours</h2>
-            <?php
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-6">
 
-            if (empty($listeEvenement)) {
+                <h2> Evenement a venir</h2>
+                <?php
 
-                echo "il n'y a aucun evenement en cours";
-            } else {
-                foreach ($listeEvenement as $evt) {
-                    printEvt($evt);
-                    if (isset($_SESSION["pseudo"])) {
-                        ?>
-                        <a href=""><button>participer</button></a>
-            <?php
+                if (empty($listeEvenement)) {
+                    echo "il n'y a aucun evenement en cours";
+                } else {
+                    foreach ($listeEvenement as $evt) {
+
+
+                        printEvt($evt);
+
+                        if (isset($_SESSION["pseudo"])) {
+                            ?>
+                            <button type=submit name="participer" value="<?php echo ($evt['id']) ?> " onClick=<?php participer($bdd) ?>>participer</button>
+                <?php
+                        }
                     }
                 }
-            }
 
-            ?>
+                ?>
 
-        </div>
-        <div class="col-md-6">
-            <h2> Evenement Passés</h2>
-            <?php
 
-            if (empty($listeEvenementPasses)) {
+            </div>
+            <div class="col-md-6">
+                <h2> Evenement Passés</h2>
+                <?php
 
-                echo "il n'y a aucun evenement Passé";
-            } else {
-                foreach ($listeEvenementPasses as $evtP) {
-                    printEvt($evtP);
-                    ?>
-                    <a href=""><button>souvenirs</button></a>
-            <?php
+                if (empty($listeEvenementPasses)) {
+
+                    echo "il n'y a aucun evenement Passé";
+                } else {
+                    foreach ($listeEvenementPasses as $evtP) {
+
+                        printEvt($evtP);
+
+                        ?>
+                        <a href=""><button>souvenirs</button></a>
+                <?php
+
+                    }
                 }
-            }
 
-            ?>
+                ?>
 
+            </div>
         </div>
-    </div>
+    </form>
 
 
 
@@ -140,4 +149,45 @@ function printEvt($e)
 
     echo $return;
 }
+
+function participer($bdd)
+{
+    if (!isset($_POST['participer'])) {
+        $_POST['participer'] = 0;
+    }
+    //récupère l'id de l'utilisateur
+    $requeteIdUt = $bdd->prepare("SELECT id from utilisateur where utilisateur.pseudo=:pseudo");
+
+    $requeteIdUt->bindValue(':pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
+    $requeteIdUt->execute();
+    $idUt = $requeteIdUt->fetchAll(pdo::FETCH_CLASS);
+    $idUt = objectToArray($idUt);
+
+    //si l'utilisateur est déjà inscrit
+    if (isset($idUt)) {
+        $requeteInscr = $bdd->prepare("SELECT * from evenementutilisateur where id_Utilisateur =:idUtilisateur and id_Evenement=:idEvenement");
+        $requeteInscr->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
+        $requeteInscr->bindValue(':idEvenement', $_POST['participer'], PDO::PARAM_INT);
+        $requeteInscr->execute();
+        $idInscr = $requeteInscr->fetchAll(pdo::FETCH_CLASS);
+        $idInscr = objectToArray($idInscr);
+
+        if (!empty($idInscr[0])) {
+            echo ("vous participez déjà à cet evenement");
+        }
+
+
+        $requeteParticiper = $bdd->prepare("INSERT INTO `evenementutilisateur` (`id_evenement`, `id_Utilisateur`) VALUES (:idEvenement, :idUtilisateur);");
+        $requeteParticiper->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
+        $requeteParticiper->bindValue(':idEvenement', $_POST['participer'], PDO::PARAM_INT);
+        $requeteParticiper->execute();
+    } else {
+        header('location=../public/indexAccueil.php');
+        exit();
+    }
+}
+
+
+
+
 ?>

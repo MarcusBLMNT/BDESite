@@ -82,7 +82,7 @@ if (isset($_POST) && !empty($_POST)) {
             <input type="number" name="prix" placeholder="prix" required="required"><br>
             <label for="recurrence" aria-placeholder="recurence">recurence</label><br />
             <select name="recurrence">
-                <option value=0>non</option>
+                <option value="0">non</option>
                 <option value="1">jour</option>
                 <option value="2">semaine</option>
                 <option value="3">mois</option>
