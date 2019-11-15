@@ -26,10 +26,10 @@ include('../includes/header.php'); ?>
 
         <!--<form action="scriptZip.php" method="post">
             <input type="submit" name="submit" value="zip" />
-        </form>-->
-        <form action="../script/scriptZipInscrit.php" method="post">
-            <input type="submit" name="submit" value="zip" />
         </form>
+        <form action="../script/scriptPDFInscrit.php" method="post">
+            <input type="submit" name="submit" value="zip" />
+        </form>-->
     </div>
 
 
@@ -50,6 +50,7 @@ include('../includes/footer.html');
 
 
 ?>
+
 
 
 </html>
