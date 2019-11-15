@@ -1,10 +1,10 @@
-/*body {
+body {
     font-family: Tahoma, Geneva, sans-serif;
     color: #fff;
-  
+
    background-image: url(../images/fond2.png);
     background-size: cover;
-}*/
+}
 
 .connexion {
     background: rgba(252, 108, 13, 0.897);
@@ -16,8 +16,8 @@
     
    
     border:3px double white;
-    
-   
+
+
 }
 form {
     width: 240px;
