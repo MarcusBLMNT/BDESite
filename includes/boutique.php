@@ -12,15 +12,19 @@
 
 </head>
 <?php
-//include('../includes/menu.php'); 
-include('../includes/headerOff.html'); 
+  include('../includes/header.php');
+  include('../includes/menu.php'); 
 ?>
-<header>
-
-
-</header>
 
 <body>
+  <div class="search">
+    <input list="test" type="search" id="search" placeholder="Search..." autocomplete="off">
+    <datalist id="test">
+      <option value="">
+      <option value="">
+   </datalist>
+  </div>
+
   <div class="produit">
   <div class="container-fluid bg-light-gray">
     <div
