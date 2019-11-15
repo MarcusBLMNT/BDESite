@@ -1,11 +1,18 @@
-  <?php
-  function bddConnect()
-  {
-    $adressebdd = file_get_contents('../public/api/AdresseBDD/adresseBDD.json');
-    $adresseBDDJsonParsed = json_decode($adressebdd);
-    $bdd = new PDO('mysql:host=' . $adresseBDDJsonParsed->{"host"} . ';port=' .
-      $adresseBDDJsonParsed->{"port"} . ';dbname=' . $adresseBDDJsonParsed->{"dbname"} .
-      ';', $adresseBDDJsonParsed->{"pseudo"}, $adresseBDDJsonParsed->{"mdp"});
-    return $bdd;
-  }
-  ?>
+
+<?php
+
+
+$dsn = 'mysql:host=localhost;dbname=projetweb';
+$user = 'root';
+$pass = '';
+$option = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',);
+
+try {
+    $con = new PDO($dsn, $user, $pass, $option);
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'failes' . $e->getMessage();
+}
+?>
+            
+             
