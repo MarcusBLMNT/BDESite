@@ -1,11 +1,12 @@
 <?php
-function jsonEncodeArray( $array ){
-  array_walk_recursive( $array, function(&$item) { 
-     $item = utf8_encode( $item ); 
-  });
-  return json_encode( $array );
+function jsonEncodeArray($array)
+{
+    array_walk_recursive($array, function (&$item) {
+        $item = utf8_encode($item);
+    });
+    return json_encode($array);
 }
-function objectToArray($d) 
+function objectToArray($d)
 {
     if (is_object($d)) {
         // Gets the properties of the given object

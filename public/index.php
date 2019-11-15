@@ -7,7 +7,6 @@ session_start();
 
 
 
-
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -29,12 +28,7 @@ include('../includes/header.php'); ?>
         ?>
 
 
-        <!--<form action="scriptZip.php" method="post">
-            <input type="submit" name="submit" value="zip" />
-        </form>
-        <form action="../script/scriptPDFInscrit.php" method="post">
-            <input type="submit" name="submit" value="zip" />
-        </form>-->
+
     </div>
 
 

@@ -16,9 +16,11 @@
 <body>
     <header>
         <?php
-        //include('../includes/menu.php');
-        include('../includes/headerOn.html');
+        include('../public/index.php');
+
+
         ?>
+
     </header>
 
     </nav>

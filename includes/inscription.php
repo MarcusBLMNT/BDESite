@@ -15,7 +15,7 @@ if (isset($_POST['inscription'])) {
     $localisation = htmlentities(trim($_POST['localisation']));
     $Mdp = htmlentities(trim($_POST['Mdp']));
     $Mdp2 = htmlentities(trim($_POST['Mdp2']));
-    //$genre = htmlentities(trim($_POST['genre']));
+    $genre = htmlentities(trim($_POST['genre']));
     if (!empty($Nom) and !empty($Prenom) and !empty($email) and !empty($Mdp) and !empty($Mdp2)) {
         if (isset($_POST['cocher'])) { } else $return = "Veuillez accepter les conditions générales";
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -54,12 +54,25 @@ if (isset($_POST['inscription'])) {
             <h2 style="color: white">Inscription</h2>
             <input type="text" name="Nom" placeholder="Nom"><br><br>
             <input type="text" name="Prenom" placeholder="Prénom"><br><br>
+            <div name="genre">
+                <label for="le_nom">Centre Cesi</label><br />
+                <select name="le_nom" id="le_nom">
+                    <option value="ta_valeur" placeholder="Ville"></option>
+                    <option value="ta_valeur">Bordeaux</option>
+                    <option value="ta_valeur">Pau</option>
+                    <option value="ta_valeur">Rouen</option>
+                    <option value="ta_valeur">Marseille</option>
+
+                </select>
+            </div> <br>
             <input type="text" name="Pseudo" placeholder="Pseudo"><br><br>
+
+
             <input type="text" name="email" placeholder="adresse mail"> <br><br>
             <input type="password" name="Mdp" placeholder="Mot de passe"><br><br>
             <input type="password" name="Mdp2" placeholder="Confirmation du mot de passe"><br><br>
-            Acceptez les condition génerales<input type="checkbox" name="cocher">
-            <input type="submit" name="inscription" value="M'inscrire">
+            <a href="../public/cgv.php">Acceptez les condition génerales</a><br><input type="checkbox" name="cocher">
+            <br><br><input type="submit" name="inscription" value="M'inscrire">
         </form>
     </div>
 </body>

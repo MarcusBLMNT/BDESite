@@ -5,204 +5,58 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../public/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../public/css/boutique.css">
+    <script src="..public/assets/autocomplete/autocomplete-0.3.0.min.js"></script>
+    <link rel="stylesheet" href="..public/assets/autocomplete/autocomplete-0.3.0.min.css">
+    <link rel="stylesheet" href="...public/assets/OwlCarousel2-2.3.4/dis/assets/owl.carousel.css">
+    <link rel="stylesheet" href="..public/assets/OwlCarousel2-2.3.4/dis/assets/owl.theme.default.css">
+    <script src="..public/assets/OwlCarousel2-2.3.4/dis/assets/owl.carousel.js"></script>
+    <link rel="stylesheet" href="..public/assets/productslider.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-    <title>Hello, world!</title>
+
+<title>Hello, world!</title>
 </head>
 
 <body>
+    <header>
+        <?php
+        include('../includes/headerOn.php');
+        ?>
 
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#">
-                            <img class="pic-1" src="../public/images/tasse.jpg">
-
-                        </a>
-
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"> <i class="fa fa-search"></i></a></li>
-                        </ul>
+    </header>
 
 
 
-                    </div>
+    <?php $article = $DB->query('SELECT * FROM article'); ?>
+    <?php foreach ($article as $articles) : ?>
+        <div class="container mt-s">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="../public/images/<?php echo $articles->urlimage;  ?>" class="card-img-top">
+                        <div class="card-body">
 
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star disable"></li>
-                    </ul>
+                            <?php echo $articles->nom;  ?><br>
+                            <?php echo $articles->description; ?>
 
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Woman's Blouse</a></h3>
-                        <div class="price"><span>$20.00</span></div>
-                        <a class="add-to-cart" href="#">
-                            Add To Cart
-                        </a>
+
+                            <?php echo $articles->prix; ?>
+                            <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-heden="true"></i>Ajouter au panier</button>
+                        </div>
                     </div>
 
                 </div>
+
+
+
             </div>
-
-
-
-
-
-
-
-
         </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#">
-                            <img class="pic-1" src="../public/images/tasse.jpg">
-
-                        </a>
-
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"> <i class="fa fa-search"></i></a></li>
-                        </ul>
-
-
-
-                    </div>
-
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star disable"></li>
-                    </ul>
-
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Woman's Blouse</a></h3>
-                        <div class="price"><span>$20.00</span></div>
-                        <a class="add-to-cart" href="#">
-                            Add To Cart
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#">
-                            <img class="pic-1" src="../public/images/tasse.jpg">
-
-                        </a>
-
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"> <i class="fa fa-search"></i></a></li>
-                        </ul>
-
-
-
-                    </div>
-
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star disable"></li>
-                    </ul>
-
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Woman's Blouse</a></h3>
-                        <div class="price"><span>$20.00</span></div>
-                        <a class="add-to-cart" href="#">
-                            Add To Cart
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#">
-                            <img class="pic-1" src="../public/images/tasse.jpg">
-
-                        </a>
-
-                        <ul class="social">
-                            <li><a href="#" data-tip="Quick View"> <i class="fa fa-search"></i></a></li>
-                        </ul>
-
-
-
-                    </div>
-
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star disable"></li>
-                    </ul>
-
-                    <div class="product-content">
-                        <h3 class="title"><a href="#">Woman's Blouse</a></h3>
-                        <div class="price"><span>$20.00</span></div>
-                        <a class="add-to-cart" href="#">
-                            Add To Cart
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-        </div>
-    </div>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <?php endforeach ?>
 </body>
-
-</html>

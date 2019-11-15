@@ -1,3 +1,4 @@
+
 .produit{
     margin-left: 500px;
     background-color: rgb(172, 0, 172);
@@ -19,4 +20,24 @@
 
 #search:focus{
 	width: 200px;	
+}
+
+
+
+.row-bis {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+}
+body{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+}
+.container{
+    width: 30%;
 }

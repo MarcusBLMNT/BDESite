@@ -20,7 +20,7 @@ include('../includes/header.php'); ?>
     </div>
     <div class="col-md-10" style="margin-left:0">
         <?php
-              include('../includes/cgv.html');
+        include('../includes/cgv.html');
         ?>
 
 
