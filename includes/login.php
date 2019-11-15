@@ -2,36 +2,34 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title Connexion></title>
-    <!--<link href="../public/css/login.css" rel="stylesheet" />
--->
+
+    <title>Connexion</title>
+
+    <link href="../public/css/login.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
 </head>
 <header>
+
     <?php
-    //include('../includes/headerOff.html');
-    //include('../includes/menu.php');
+    include('headerOff.html');
+    include('menu.php');
 
     ?>
 
 </header>
 
 <body>
-    <?php
-    include('../includes/bddconnect.php'); ?>
-    <?php
-    echo lang('MESSAGE') . '' . lang('ADMIN');
-    ?>
 
-    <!--<div class="connexion">
-        <form>
+    <div class="connexion">
+        <form method="post" action="../script/scriptConnexion.php" autocomplete="off">
             <h2 style="color: white">Connexion</h2>
-            <input type="text" id="pseudo name" name="Nom d'utilisateur" placeholder="Nom d'utilisateur">
-            <input type="text" id="mot_de_passe" name="Mot de passe" placeholder="Mot de passe"><br><br>
-            <a href=""><input type="button" value=" Connexion"></a>
+            <input type="text" id="pseudo" name="pseudo" placeholder="Nom d'utilisateur">
+            <input type="password" id="motDePasse" name="motDePasse" placeholder="Mot de passe"><br><br>
+            <input type="submit" value=" Connexion">
             <br><br>
             <div id="container">
                 <a href="" style="margin-right:0px; font-size: 13px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Mot
+
                     de passe oublié?</a>
 
             </div>
@@ -42,6 +40,6 @@
 
 </body>
 <footer>
-
-
-</html>
+    <?php
+    include('footer.html');
+    ?> </footer>

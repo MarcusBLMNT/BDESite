@@ -1,10 +1,10 @@
-body {
+/*body {
     font-family: Tahoma, Geneva, sans-serif;
     color: #fff;
-  
+
    background-image: url(../images/fond2.png);
     background-size: cover;
-}
+}*/
 
 .connexion {
     background: rgba(252, 108, 13, 0.897);
@@ -13,17 +13,17 @@ body {
     margin: auto;
     margin-top: 150px;
     height: 400px;
-    
+
     margin-left: 500px;
     border:3px double white;
-    
-   
+
+
 }
 form {
     width: 240px;
     text-align: center;
 }
-input [type=text]{
+input {
     width:240px ;
     text-align: center;
     background: transparent;

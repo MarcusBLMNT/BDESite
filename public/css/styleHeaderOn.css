@@ -10,9 +10,10 @@ header img{
 	float: left;
 }
 
+
 .logo h1{
 	position: fixed;
-	margin: 17px 43%;
+	padding-left: 42%;
 	color: white;
 	font-weight: bold;
 	font-size: 25px;
@@ -20,10 +21,11 @@ header img{
 
 .logo h2{
 	position: fixed;
-	margin: 24px 43.5%;
+	padding-top: 30px;
+	padding-left: 42.5%;
 	color: white;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 nav{
@@ -32,23 +34,26 @@ nav{
 }
 
 nav ul{
-	padding-right: 5px;
+	padding: 0;
 	text-align: right;
-	margin: -13px;
+	margin: 0;
 }
 
 nav ul li{
 	display: inline-block;
-	padding: 20px;
+	padding: 15px;
 }
 
 nav ul li a{
+	padding: 4px;
 	text-decoration: none;
 	color: white;
-	font-size: 25px;
+	font-size: 20px;
+	border: 1.5px solid;
+	border-radius: 40px;
 }
 
-a:hover{
+.menu a:hover{
 	color: orange;
 }
 
