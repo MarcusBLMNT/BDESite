@@ -1,0 +1,15 @@
+# robots.txt file for website
+
+User-agents: *
+Disallow: includes/
+Allow: includes/boutique.php
+Disallow: public/api/
+Disallow: public/assets/
+Disallow: public/css/
+Disallow: public/images/
+Disallow: public/api.rar
+Disallow: public/index.php
+Disallow: public/indexAddEvent.php
+Disallow: public/indexInscription.php
+Disallow: public/indexLogin.php
+Disallow: public/indexPanier.php
