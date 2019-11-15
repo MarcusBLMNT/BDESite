@@ -1,27 +1,41 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-    <title>Connexion</title>
-    <script href="../public/css/mentions.css" rel="stylesheet"></script>
-    <link href="../public/css/login.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
-</head>
 
-<body>
-    <header>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+<?php
+
+include('../includes/headerOn.html'); ?>
+
+<div class="row">
+
+    <div class="col-md-2" style="margin-left:0">
         <?php
-        +include('../includes/header.php');
-        include('../includes/menu.php'); ?>
-    </header>
-    <?php
-    include('../includes/login.html');
-    ?>
-    <footer>
-        <?php
-        include('../includes/footer.html');
+        include('../includes/menu.php');
         ?>
-    </footer>
-</body>
+    </div>
+    <div class="col-md-10" style="margin-left:0">
+        <?php
+        include('../includes/login.html');
+        ?>
+
+
+    </div>
+</div>
+
+
+<?php
+include('../includes/footer.html');
+
+
+
+
+
+?>
+
 
 </html>
