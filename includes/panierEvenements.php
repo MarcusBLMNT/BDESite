@@ -25,31 +25,34 @@ if (
     </head>
 
     <body>
-    <?php
+        <?php
 
-        $bdd = bddConnect();
+            $bdd = bddConnect();
 
 
-        $requete = $bdd->prepare("SELECT evenement.nom, date from utilisateur
+            $requete = $bdd->prepare("SELECT evenement.nom, date from utilisateur
             join evenementutilisateur on utilisateur.id=evenementutilisateur.id_Utilisateur
             join evenement on evenementutilisateur.id_evenement= evenement.id where pseudo=:pseudo and
             date >= CURRENT_DATE order by date desc");
-        $requete->bindValue(':pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
+            $requete->bindValue(':pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
 
 
-        $requete->execute();
+            $requete->execute();
 
-        $contenuPanier = $requete->fetchAll(PDO::FETCH_CLASS);
-        $contenuPanier = objectToArray($contenuPanier);
-
-
-
+            $contenuPanier = $requete->fetchAll(PDO::FETCH_CLASS);
+            $contenuPanier = objectToArray($contenuPanier);
 
 
 
 
-        if (empty($contenuPanier)) {
-            echo "Vous ne participez a aucun evenement a venir";
+
+
+
+            if (empty($contenuPanier)) {
+                ?>
+            <div id="vide">Vous ne participez a aucun evenement a venir...</div>
+    <?php
+
         } else {
             foreach ($contenuPanier as $article) {
 

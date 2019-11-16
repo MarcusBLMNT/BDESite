@@ -6,17 +6,15 @@
     text-decoration:none;
     font-family:'Roboto', sans-serif;
 }
-
-
 .BarreMnu {
- display: flex;
- position: relative;
- height:100vh;
+    display: flex;
+    position: relative;
+    min-height:100vh;
+    height:100%; 
+   }
 
 
- 
- 
-}
+
 .dropmenu ul{
     list-style-type: none;
     margin: 0px;
@@ -47,7 +45,7 @@
 
 .BarreMnu .sidebar{
 
-    width: 200px;
+    width: auto;
     min-height:100%;
 
     background: #000000;

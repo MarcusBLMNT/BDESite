@@ -18,8 +18,7 @@ if (
 
     <head>
         <meta charset="utf-8">
-        <title>Titre de la page</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../public/css/panier.css">
 
     </head>
 
@@ -49,18 +48,37 @@ if (
 
 
             if (empty($contenuPanier)) {
-                echo "votre panier est vide";
+                ?>
+            <div id="vide">Votre panier est vide... qu'attendez-vous pour le remplir?</div>
+        <?php
             } else {
                 $total = 0;
-                foreach ($contenuPanier as $article) {
-
-                    $artXquant = (int) $article["prixArticle"] * (int) $article["quantite"];
-                    echo ($article["nomArticle"] . " : " . $article["prixArticle"] . "€ * " . $article["quantite"] . " = " . $artXquant . "€ </br>");
-                    $total += $artXquant;
-                }
-                echo "</br><h4>total = " . $total . "€</h4>";
                 ?>
-            <button>payer</button>
+            <div id="cont">
+                <?php
+                        foreach ($contenuPanier as $article) {
+                            ?>
+
+                    <div class="article">
+                        <?php
+
+                                    $artXquant = (int) $article["prixArticle"] * (int) $article["quantite"];
+
+                                    echo ($article["nomArticle"] . " :<prix> " . $article["prixArticle"] . "€</prix> X " . $article["quantite"] . " <div id='prix' >" . $artXquant . "€ </div>");
+                                    $total += $artXquant; ?>
+                    </div>
+                <?php
+                        }
+                        ?>
+
+                <div id="total">Total : <?php echo ($total) ?>€
+
+                    <a href="">
+                        <div class="noDecoration" id="payer">payer</div>
+                    </a>
+                </div>
+            </div>
+
         <?php
             }
 
