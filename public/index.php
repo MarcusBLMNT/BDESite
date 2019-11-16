@@ -23,9 +23,9 @@ include('../includes/header.php'); ?>
         ?>
     </div>
     <div class="col-10" style="margin-left:0">
-        <?php
-
-        ?>
+        <form action="../script/scriptAjoutPanier.php" method="post">
+            <input type="submit" name="submit" value="Ajouter" />
+        </form>
 
 
 
@@ -37,14 +37,27 @@ include('../includes/header.php'); ?>
 </div>
 
 <?php
+$bdd = new PDO(
+    'mysql:host=localhost;dbname=projetweb;charset=utf8',
+    'root',
+    ''
+);
 
+$pseudo = "elise";
+$req_any_cart = $bdd->prepare('CALL any_cart(:pseudo)');
+$req_any_cart->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
 
-
-
+$req_any_cart->execute();
+$table = array();
+while ($data = $req_any_cart->fetch()) {
+    $table[] = $data['id'];
+}
+$id_commande = $table[0];
+echo $id_commande;
 
 include('../includes/footer.html');
 
-
+$req_any_cart->closeCursor();
 
 
 
