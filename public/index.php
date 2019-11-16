@@ -23,8 +23,8 @@ include('../includes/header.php'); ?>
         ?>
     </div>
     <div class="col-10" style="margin-left:0">
-        <form action="../script/scriptAjoutPanier.php" method="post">
-            <input type="submit" name="submit" value="Ajouter" />
+        <form action="../script/scriptLike.php" method="post">
+            <input type="submit" name="submit" value="Like" />
         </form>
 
 
