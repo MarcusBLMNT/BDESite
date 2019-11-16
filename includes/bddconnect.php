@@ -8,3 +8,4 @@
       ';', $adresseBDDJsonParsed->{"pseudo"}, $adresseBDDJsonParsed->{"mdp"});
     return $bdd;
   }
+?>

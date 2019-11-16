@@ -14,14 +14,6 @@
 </head>
 
 <body>
-    <header>
-        <?php
-        include('../public/index.php');
-
-
-        ?>
-
-    </header>
 
     </nav>
     </div>

@@ -1,36 +1,50 @@
 <?php
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-} catch (Exception $e) {
-    echo "Erreur:" . $e;
-}
-
+include('bddconnect.php');
+include('../public/api/jsonUnicode.php');
+$bdd = bddconnect();
 
 if (isset($_POST['inscription'])) {
 
-    $Nom = htmlentities(trim($_POST['Nom']));
-    $Prenom = htmlentities(trim($_POST['Prenom']));
-    $Pseudo = htmlentities(trim($_POST['Pseudo']));
+    $nom = htmlentities(trim($_POST['Nom']));
+    $prenom = htmlentities(trim($_POST['Prenom']));
+    $pseudo = htmlentities(trim($_POST['Pseudo']));
     $email = htmlentities(trim($_POST['email']));
     $localisation = htmlentities(trim($_POST['localisation']));
-    $Mdp = htmlentities(trim($_POST['Mdp']));
-    $Mdp2 = htmlentities(trim($_POST['Mdp2']));
-    $genre = htmlentities(trim($_POST['genre']));
-    if (!empty($Nom) and !empty($Prenom) and !empty($email) and !empty($Mdp) and !empty($Mdp2)) {
-        if (isset($_POST['cocher'])) { } else $return = "Veuillez accepter les conditions générales";
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            if ($Mdp == $Mdp2) {
+    $mdp = htmlentities(trim($_POST['Mdp']));
+    $mdp2 = htmlentities(trim($_POST['Mdp2']));
 
-                if (strlen($Nom) <= "50") {
-                    $TestEmail = $bdd->query('SELECT id FROM utilisateurs WHERE email ="' . $email . '"');
-                    if ($TestEmail->rowCount() < 1) {
-                        $bdd->query('INSERT INTO utilisateurs (pseudo,mot_de_passe,email) VALUES ("' . $Pseudo . '","' . $Mdp . '","' . $email . '")');
-                    }
-                } else $return = "Depasse 50 caract";
-            } else $return = "Veuillez renseignez des mots de passe identique ";
-        } else $return = "L'email est invalide";
-    } else $return = "Un ou plusieurs champs manquant";
+
+
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($mdp == $mdp2) {
+
+            if (strlen($nom) <= "50") {
+
+                $testEmail = $bdd->prepare("SELECT id FROM utilisateur WHERE email =:email");
+                $testEmail->bindValue(':email',  $email, PDO::PARAM_STR);
+                $testEmail->execute();
+                $TabTestEmail = $testEmail->fetchAll(PDO::FETCH_CLASS);
+                $TabTestEmail = objectToArray($TabTestEmail);
+                if (empty($TabTest)) {
+                    $testEmail2 = $bdd->prepare("call add_user (:pseudo,:mdp,:email,2,:localisation,:nom,:prenom)");
+                    //    changer la procedure add_user 
+                    $testEmail2->bindValue(':pseudo',  $pseudo, PDO::PARAM_STR);
+                    $testEmail2->bindValue(':mdp',  $mdp, PDO::PARAM_STR);
+                    $testEmail2->bindValue(':email',  $email, PDO::PARAM_STR);
+                    $testEmail2->bindValue(':localisation',  $localisation, PDO::PARAM_INT);
+                    $testEmail2->bindValue(':nom',  $nom, PDO::PARAM_STR);
+                    $testEmail2->bindValue(':prenom',  $prenom, PDO::PARAM_STR);
+                    $testEmail2->execute();
+                } else {
+                    echo ("vous possedez déjà un compte");
+                }
+            } else $return = "Depasse 50 caract";
+        } else $return = "Veuillez renseignez des mots de passe identique ";
+    } else $return = "L'email est invalide";
 }
+
+
 ?>
 
 
@@ -50,28 +64,27 @@ if (isset($_POST['inscription'])) {
 
 
         <?php if (isset($_POST['inscription']) and isset($return)) echo $return; ?>
-        <form method="POST" action="inscription.php">
+        <form method="POST" action="indexInscription.php">
             <h2 style="color: white">Inscription</h2>
-            <input type="text" name="Nom" placeholder="Nom"><br><br>
-            <input type="text" name="Prenom" placeholder="Prénom"><br><br>
+            <input type="text" name="Nom" placeholder="Nom" required="required"><br><br>
+            <input type="text" name="Prenom" placeholder="Prénom" required="required"><br><br>
             <div name="genre">
-                <label for="le_nom">Centre Cesi</label><br />
-                <select name="le_nom" id="le_nom">
-                    <option value="ta_valeur" placeholder="Ville"></option>
-                    <option value="ta_valeur">Bordeaux</option>
-                    <option value="ta_valeur">Pau</option>
-                    <option value="ta_valeur">Rouen</option>
-                    <option value="ta_valeur">Marseille</option>
+                <label for="le_nom" required="required">Centre Cesi</label><br />
+                <select name="localisation" id="le_nom">
+                    <option value="4">Bordeaux</option>
+                    <option value="20">Pau</option>
+                    <option value="22">Rouen</option>
+                    <option value="1">Aix-en-provence</option>
 
                 </select>
             </div> <br>
-            <input type="text" name="Pseudo" placeholder="Pseudo"><br><br>
+            <input type="text" name="Pseudo" placeholder="Pseudo" required="required"><br><br>
 
 
-            <input type="text" name="email" placeholder="adresse mail"> <br><br>
-            <input type="password" name="Mdp" placeholder="Mot de passe"><br><br>
-            <input type="password" name="Mdp2" placeholder="Confirmation du mot de passe"><br><br>
-            <a href="../public/cgv.php">Acceptez les condition génerales</a><br><input type="checkbox" name="cocher">
+            <input type="text" name="email" placeholder="adresse mail" required="required"> <br><br>
+            <input type="password" name="Mdp" placeholder="Mot de passe" required="required"><br><br>
+            <input type="password" name="Mdp2" placeholder="Confirmation du mot de passe" required="required"><br><br>
+            <a href="../public/cgv.php">Acceptez les condition génerales</a><br><input type="checkbox" name="cocher" required="required">
             <br><br><input type="submit" name="inscription" value="M'inscrire">
         </form>
     </div>
