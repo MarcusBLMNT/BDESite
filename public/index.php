@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 ?>
 <!doctype html>
 
@@ -23,8 +23,8 @@ include('../includes/header.php'); ?>
         ?>
     </div>
     <div class="col-10" style="margin-left:0">
-        <form action="../script/scriptLike.php" method="post">
-            <input type="submit" name="submit" value="Like" />
+        <form action="../script/scriptAjoutPanier.php" method="post">
+            <input type="submit" name="submit" value="Ajouter" />
         </form>
 
 
@@ -42,22 +42,26 @@ $bdd = new PDO(
     'root',
     ''
 );
+$id_commande = 5;
+$idarticle = 2;
 
-$pseudo = "elise";
-$req_any_cart = $bdd->prepare('CALL any_cart(:pseudo)');
-$req_any_cart->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
 
-$req_any_cart->execute();
-$table = array();
-while ($data = $req_any_cart->fetch()) {
-    $table[] = $data['id'];
+$req_is_article_already_in = $bdd->prepare('CALL is_article_already_in(:id_article, :id_commande)');
+$req_is_article_already_in->bindValue(':id_commande', $id_commande, PDO::PARAM_STR);
+$req_is_article_already_in->bindValue(':id_article', $idarticle, PDO::PARAM_STR);
+
+$req_is_article_already_in->execute();
+
+$table2 = array();
+while ($data = $req_is_article_already_in->fetch()) {
+    $table2[] = $data['quantite'];
 }
-$id_commande = $table[0];
-echo $id_commande;
+echo $table2[0];
+
+$req_is_article_already_in->closeCursor();
 
 include('../includes/footer.html');
 
-$req_any_cart->closeCursor();
 
 
 

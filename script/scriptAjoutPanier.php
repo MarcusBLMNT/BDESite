@@ -8,9 +8,9 @@ $bdd = new PDO(
 
 
 $pseudo = "elise";
-$idarticle = 1;
-$datetime = date("Y-m-d H:i:s");
-
+$idarticle = 2;
+//$datetime = date("Y-m-d H:i:s");
+$datetime = "2019-11-13";
 
 //requete verifiant si une commande est en cours
 $req_any_cart = $bdd->prepare('CALL any_cart(:pseudo)');
@@ -73,11 +73,21 @@ $req_one_more_article->bindValue(':id_article', $idarticle, PDO::PARAM_STR);
 // l'article est t il déja dans le panier
 $req_is_article_already_in->execute();
 
+$tab = array();
+while ($data = $req_is_article_already_in->fetch()) {
+    $tab[] = $data['quantite'];
+}
+echo $tab[0];
+
+
 //si oui ajouter un à la quantité, sinon créer un nouvel enregistrement
-if ($req_is_article_already_in->fetch() != NULL) {
-    $req_one_more_article->execute();
-} else {
+if ($tab == NULL) {
+    echo "cc";
     $req_add_to_panier->execute();
+} else {
+
+    $req_one_more_article->execute();
+    echo "slt";
 }
 
 $req_add_to_panier->closeCursor();

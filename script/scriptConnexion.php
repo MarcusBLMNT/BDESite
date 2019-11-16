@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../includes\bddConnect.php');
+include('../includes/bddConnect.php');
 $bdd = bddConnect();
 
 
