@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include('../public/api/jsonUnicode.php');
 include('bddConnect.php');
 
@@ -25,43 +25,41 @@ if (
     </head>
 
     <body>
-        <?php
-            $bdd = bddConnect();
+    <?php
 
-            $requete = $bdd->prepare("SELECT article.nom as nomArticle, article.prix as prixArticle ,
-            quantite from utilisateur join commande on utilisateur.id=commande.id_Utilisateur join
-            commandearticle on commande.id=commandearticle.id_commande join article on
-            commandearticle.id_Article=article.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\" and commande.faite=0
-            ");
-
-            $requete->execute();
-
-            $contenuPanier = $requete->fetchAll(PDO::FETCH_CLASS);
-            $contenuPanier = objectToArray($contenuPanier);
+        $bdd = bddConnect();
 
 
+        $requete = $bdd->prepare("SELECT evenement.nom, date from utilisateur
+            join evenementutilisateur on utilisateur.id=evenementutilisateur.id_Utilisateur
+            join evenement on evenementutilisateur.id_evenement= evenement.id where pseudo=:pseudo and
+            date >= CURRENT_DATE order by date desc");
+        $requete->bindValue(':pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
+
+
+        $requete->execute();
+
+        $contenuPanier = $requete->fetchAll(PDO::FETCH_CLASS);
+        $contenuPanier = objectToArray($contenuPanier);
 
 
 
 
-            if (empty($contenuPanier)) {
-                echo "votre panier est vide";
-            } else {
-                $total = 0;
-                foreach ($contenuPanier as $article) {
 
-                    $artXquant = (int) $article["prixArticle"] * (int) $article["quantite"];
-                    echo ($article["nomArticle"] . " : " . $article["prixArticle"] . "€ * " . $article["quantite"] . " = " . $artXquant . "€ </br>");
-                    $total += $artXquant;
-                }
-                echo "</br><h4>total = " . $total . "€</h4>";
-                ?>
-            <button>payer</button>
-        <?php
+
+
+        if (empty($contenuPanier)) {
+            echo "Vous ne participez a aucun evenement a venir";
+        } else {
+            foreach ($contenuPanier as $article) {
+
+                echo ("<div style=\"font-weight: bold\">" . $article['nom'] . "</div>le " . $article['date'] . "<br>");
             }
+        }
+    }
 
 
-            ?>
+    ?>
 
 
 
@@ -69,6 +67,3 @@ if (
     </body>
 
     </html>
-<?php
-}
-?>

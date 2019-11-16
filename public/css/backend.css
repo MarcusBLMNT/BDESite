@@ -11,7 +11,7 @@
 .BarreMnu {
  display: flex;
  position: relative;
- min-height:100vh;
+ height:100%;
  
 }
 .dropmenu ul{
@@ -34,6 +34,7 @@
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 30px ;
+  
 
 }
 .navi{
