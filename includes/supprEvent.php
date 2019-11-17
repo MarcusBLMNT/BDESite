@@ -1,5 +1,5 @@
 <?php
-
+//script supprimant un évenènement
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
 $bdd = bddConnect();

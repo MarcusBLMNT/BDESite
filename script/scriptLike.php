@@ -11,12 +11,12 @@ $bdd = new PDO(
 $pseudo = "elise";
 $id_photo = 2;
 
-
+//requete vérifiant si la personne a déjà liké la photo
 $req_had_liked = $bdd->prepare('CALL has_liked(:id_photo, :user)');
 $req_had_liked->bindValue(':id_photo', $id_photo, PDO::PARAM_STR);
 $req_had_liked->bindValue(':user', $pseudo, PDO::PARAM_STR);
 
-
+//requete ajoutant le like
 $req_like = $bdd->prepare('CALL add_like(:id_photo, :user)');
 $req_like->bindValue(':id_photo', $id_photo, PDO::PARAM_STR);
 $req_like->bindValue(':user', $pseudo, PDO::PARAM_STR);
