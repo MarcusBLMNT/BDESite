@@ -10,4 +10,5 @@ $req = $bdd->prepare('CALL commande_faite(:p_user)');
 $req->bindValue(':p_user', $pseudo, PDO::PARAM_STR);
 $req->execute();
 $req->closeCursor();
+header('Location:../public/indexPanier.php');
 exit();

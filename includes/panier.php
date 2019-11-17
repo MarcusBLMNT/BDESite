@@ -75,7 +75,7 @@ if (
 
                 <div id="total">Total : <?php echo ($total) ?>€
 
-                    <a href="">
+                    <a href="../script/scriptFinPanier.php">
                         <div class="noDecoration" id="payer">payer</div>
                     </a>
                 </div>

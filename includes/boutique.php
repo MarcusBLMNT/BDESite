@@ -115,7 +115,10 @@ $DB = new DB();
 
 
     <?php $article = $DB->query('SELECT * FROM article'); ?>
-    <?php foreach ($article as $articles) : ?>
+    <?php foreach ($article as $articles) :
+
+
+      ?>
       <div class="container mt-s">
         <div class="row row-bis">
           <div class="col-md-3">
@@ -130,7 +133,10 @@ $DB = new DB();
 
                 <h2><?php echo $articles->prix; ?>€</h2>
                 <br>
-                <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-heden="true"></i>Ajouter au panier</button>
+                <form action="../script/scriptAjoutPanier.php" method="post">
+                  <button class="btn btn-danger" name="ajoutPanier" value=<?php echo ($articles->id) ?>><i class="fa fa-cart-plus" aria-heden="true"></i>Ajouter au panier</button>
+
+                </form>
               </div>
             </div>
 

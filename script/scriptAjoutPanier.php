@@ -1,15 +1,11 @@
 <?php
 session_start();
-$bdd = new PDO(
-    'mysql:host=localhost;dbname=projetweb;charset=utf8',
-    'root',
-    ''
-);
+include('../includes/bddConnect.php');
+$bdd = bddConnect();
 
-//$pseudo = $_SESSION['pseudo'];
-//$idarticle = $_POST['article'];
-$pseudo = "jojo";
-$idarticle = 3;
+$pseudo = $_SESSION['pseudo'];
+$idarticle = $_POST['ajoutPanier'];
+
 $datetime = date("Y-m-d H:i:s");
 
 //requete verifiant si une commande est en cours
@@ -58,7 +54,6 @@ if ($table == NULL) {
 
 
 
-
 //requete ajoutant un nouvel article au panier
 $req_add_to_panier = $bdd->prepare('CALL add_order_article(:idorder, :id_article, 1)');
 $req_add_to_panier->bindValue(':idorder', $id_commande, PDO::PARAM_STR);
@@ -87,16 +82,15 @@ $req_is_article_already_in->closeCursor();
 
 //si oui créer un nouvel enregistrement, sinon ajouter un à la quantité
 if ($tab == NULL) {
-    echo "cc";
+
     $req_add_to_panier->execute();
     $req_add_to_panier->closeCursor();
 } else {
 
     $req_one_more_article->execute();
     $req_one_more_article->closeCursor();
-
-    echo "slt";
 }
 
 
 $req_add_new_order->closeCursor();
+header('Location:../public/indexPanier.php');
