@@ -1,4 +1,5 @@
 <?php
+//script non fini, future amélioration
 // la classe de fonctions
 require('../public/assets/fpdf.php');
 $bdd = new PDO(

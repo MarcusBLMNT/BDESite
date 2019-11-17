@@ -4,7 +4,7 @@ include('../public/api/jsonUnicode.php');
 $bdd = bddconnect();
 
 if (isset($_POST['inscription'])) {
-
+    //récupération des données inscrites par l'utilisateur
     $nom = htmlentities(trim($_POST['Nom']));
     $prenom = htmlentities(trim($_POST['Prenom']));
     $pseudo = htmlentities(trim($_POST['Pseudo']));
@@ -15,7 +15,7 @@ if (isset($_POST['inscription'])) {
 
 
 
-
+    //vérification des données
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         if ($mdp == $mdp2) {
 
@@ -66,6 +66,7 @@ if (isset($_POST['inscription'])) {
         //include('../includes/menu.php');
         ?>
     </header>
+    <!-- Formulaire des données. -->
     <div class="inscrip">
 
 

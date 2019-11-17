@@ -1,5 +1,5 @@
 <?php
-
+//création d'un fichier csv de la liste des inscrits pour un évènement donné
 header("Content-type: text/csv");
 header("Content-Disposition: attachment; filename=fichier.csv");
 header("Pragma: no-cache");

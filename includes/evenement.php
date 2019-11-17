@@ -12,6 +12,7 @@ include('../script/scriptRecurrenceEvt.php');
 <!doctype html>
 
 <html lang="fr">
+<!-- page gérant l'affichage des évènements avec récupération dans la bdd -->
 
 <head>
     <meta charset="utf-8">

@@ -1,11 +1,11 @@
 <?php
-
+//script ajoutant un article
 $bdd = new PDO(
     'mysql:host=localhost;dbname=projetweb;charset=utf8',
     'root',
     ''
 );
-
+//récupération des données du formulaire
 $nom = $_POST['nom'];
 $description = $_POST['description'];
 $prix = $_POST['prix'];

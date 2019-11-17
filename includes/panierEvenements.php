@@ -1,5 +1,5 @@
 <?php
-
+//page de récapitulatif des évènements auquels la personne est inscrite
 include('../public/api/jsonUnicode.php');
 include('bddConnect.php');
 

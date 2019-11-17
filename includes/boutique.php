@@ -5,6 +5,7 @@ $DB = new DB();
 ?>
 <!doctype html>
 <html lang="en">
+<!-- page de la boutique -->
 
 <head>
 
