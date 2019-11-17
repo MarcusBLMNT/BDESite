@@ -23,9 +23,9 @@ include('../includes/header.php'); ?>
         ?>
     </div>
     <div class="col-10" style="margin-left:0">
-        <?php
-
-        ?>
+        <form action="../script/scriptAjoutPanier.php" method="post">
+            <input type="submit" name="submit" value="Ajouter" />
+        </form>
 
 
 
@@ -37,13 +37,32 @@ include('../includes/header.php'); ?>
 </div>
 
 <?php
+$bdd = new PDO(
+    'mysql:host=localhost;dbname=projetweb;charset=utf8',
+    'root',
+    ''
+);
+$id_commande = 5;
+$idarticle = 2;
 
 
+$req_is_article_already_in = $bdd->prepare('CALL is_article_already_in(:id_article, :id_commande)');
+$req_is_article_already_in->bindValue(':id_commande', $id_commande, PDO::PARAM_STR);
+$req_is_article_already_in->bindValue(':id_article', $idarticle, PDO::PARAM_STR);
+
+$req_is_article_already_in->execute();
+
+$table2 = array();
+while ($data = $req_is_article_already_in->fetch()) {
+    $table2[] = $data['quantite'];
+}
+echo $table2[0];
+
+$req_is_article_already_in->closeCursor();
 
 
 
 include('../includes/footer.html');
-
 
 
 
