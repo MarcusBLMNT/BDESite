@@ -10,15 +10,16 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<script src="script.js"></script>
 	</head>
-	<header>
-	<?php
-	include('../includes/headerOff.html'); 
-	include('../includes/menu.php') ?>
-</header>
+	
 
 
 
 <body>
+<header>
+	<?php
+	include('../includes/headerOff.html'); 
+	include('../includes/menu.php') ?>
+</header> b
     <div class="mentions">
 	<h1>Mentions légales</h1>
 </br>

@@ -19,9 +19,8 @@ include('../includes/header.php'); ?>
         ?>
     </div>
     <div class="col-10" style="margin-left:0">
-        <?php
-        //inserez vos includes
-        ?>
+
+
 
     </div>
 
@@ -35,9 +34,7 @@ include('../includes/header.php'); ?>
 
 
 
-
 include('../includes/footer.html');
-
 
 
 

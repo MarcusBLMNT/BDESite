@@ -1,7 +1,7 @@
 /*body {
     font-family: Tahoma, Geneva, sans-serif;
     color: #fff;
-  
+
    background-image: url(../images/fond2.png);
     background-size: cover;
 }*/
@@ -13,11 +13,11 @@
     margin: auto;
     margin-top: 150px;
     height: 400px;
-    
+
     margin-left: 500px;
     border:3px double white;
-    
-   
+
+
 }
 form {
     width: 240px;

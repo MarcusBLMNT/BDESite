@@ -8,8 +8,7 @@
 
 </head>
 <?php
-
-include('../includes/headerOn.html'); ?>
+include('../includes/header.php'); ?>
 
 <div class="row">
 
@@ -20,8 +19,7 @@ include('../includes/headerOn.html'); ?>
     </div>
     <div class="col-md-10" style="margin-left:0">
         <?php
-        include('../includes/accueil.html');
-
+        include('../includes/accueil.php');
 
         ?>
 
@@ -32,11 +30,6 @@ include('../includes/headerOn.html'); ?>
 
 <?php
 include('../includes/footer.html');
-
-
-
-
-
 ?>
 
 
