@@ -1,4 +1,5 @@
 <?php
+//script faisant un lien avec la bdd -> évite la redondance de code
 //fontion pour instancier un objet bdd connecté à notre base de données. l'addresse bdd est accessible via le fichier adresseBDD.json
 function bddConnect()
 {

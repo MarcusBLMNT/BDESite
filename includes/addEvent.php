@@ -1,5 +1,5 @@
 <?php
-
+//script qui envoie à la base de données un nouveau evènement
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
 $bdd = bddConnect();
@@ -76,6 +76,7 @@ if (isset($_POST) && !empty($_POST)) {
     <link rel="stylesheet" href="style.css">
 
 </head>
+<!-- Formulaire permettant d'ajouter un évènement-->
 
 <body>
     <div style="text-align:center">
