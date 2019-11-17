@@ -7,11 +7,21 @@ h1{
     text-align:center;
 }
 
-p{
+h3{
 	text-align: justify;
 	font-size: 20px;
 	border: solid;
 	border-color: black;
 	padding: 10px;
 	font-weight: bold;
+	text-align: justify;
+}
+h2{
+	text-decoration: underline;
+	text-align: center;
+
+}
+.d-block {
+	border-color: black;
+
 }

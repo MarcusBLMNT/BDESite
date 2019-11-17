@@ -17,7 +17,7 @@ $requete->execute();
 
 if ($requete->fetch() != NULL) {
     $_SESSION['pseudo'] = $pseudo;
-    header('Location: ../public/indexAccueil.php');
+    header('Location: ../public/index.php');
 } else {
     echo "Connexion échouée";
 }

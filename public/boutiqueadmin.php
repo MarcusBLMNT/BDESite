@@ -26,7 +26,12 @@
 
 
 <body>
+    <header>
+        <?php
+        include('../includes/headerOn.php');
+        ?>
 
+    </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +43,8 @@
 
                 <li class="nav-item dropdown">
 
+
+
                     <a class="nav-link dropdown-toggle" href="boutique.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Catégories
                     </a>
@@ -48,7 +55,8 @@
 
                         <?php endforeach ?>
                     </div>
-                    <!--<div class="row">
+                <li><a href="../includes/addprd.php">Ajouter produits</a></li>
+                <!--<div class="row">
                         <aside class="col-lg-3 col-md-4">
                             <div class="panel list">
                                 <div class="panel-heading">
@@ -119,9 +127,6 @@
 
 
 
-
-
-
         </div>
     </nav>
     <br><br><br>
@@ -160,5 +165,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
-
-</html>

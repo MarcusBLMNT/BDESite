@@ -9,11 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
 </head>
 
-
 <body>
 
     <div class="connexion">
-
         <form method="post" action="../script/scriptConnexion.php" autocomplete="off">
             <h2 style="color: white">Connexion</h2>
             <input type="text" id="pseudo" name="pseudo" placeholder="Nom d'utilisateur">

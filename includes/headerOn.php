@@ -11,7 +11,7 @@ $DB = new DB();
 	<link rel="stylesheet" href="../public/css/styleHeaderOn.css">
 	<link rel="stylesheet" href="../public/assets/vendors/fontawesome/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<script src="script.js"></script>
+	<script src=https://kit.fontawesome.com/b99e675b6e.js> </script> <script src="script.js"></script>
 </head>
 
 <header>
