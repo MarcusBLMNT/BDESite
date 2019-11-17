@@ -26,8 +26,9 @@ include('../public/api/jsonUnicode.php');
     $bdd = bddConnect();
     if (isset($_SESSION["pseudo"])) {
         $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
-    join role on utilisateur.id_Role=role.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\"
+    join role on utilisateur.id_Role=role.id where utilisateur.pseudo=:pseudo
     ");
+        $requeteAdmin->bindValue(':pseudo', $_SESSION["pseudo"], PDO::PARAM_STR);
         $requeteAdmin->execute();
         $idAdmin = $requeteAdmin->fetchAll(PDO::FETCH_CLASS);
         $idAdmin = objectToArray($idAdmin);
@@ -93,7 +94,10 @@ include('../public/api/jsonUnicode.php');
 
                         if (isset($_SESSION["pseudo"])) {
                             ?>
-                            <button type=submit name="participer" value="<?php echo ($evt['id']) ?> " onClick=<?php participer($bdd) ?>>participer</button>
+                            <div onclick=<?php participer($bdd) ?>>
+                                <button type=submit name="participer" value=<?php echo ($evt['id']) ?>>
+                                    participer
+                                </button></div>
                 <?php
                         }
                     }
@@ -138,6 +142,7 @@ include('../public/api/jsonUnicode.php');
 <?php
 function printEvt($e)
 {
+
     $return = '';
 
 
@@ -155,6 +160,7 @@ function participer($bdd)
     if (!isset($_POST['participer'])) {
         $_POST['participer'] = 0;
     }
+
     //récupère l'id de l'utilisateur
     $requeteIdUt = $bdd->prepare("SELECT id from utilisateur where utilisateur.pseudo=:pseudo");
 
@@ -163,7 +169,7 @@ function participer($bdd)
     $idUt = $requeteIdUt->fetchAll(pdo::FETCH_CLASS);
     $idUt = objectToArray($idUt);
 
-    //si l'utilisateur est déjà inscrit
+    //si l'utilisateur est déjà inscrit, afficher : vous participez déjà à cet evenement
     if (isset($idUt)) {
         $requeteInscr = $bdd->prepare("SELECT * from evenementutilisateur where id_Utilisateur =:idUtilisateur and id_Evenement=:idEvenement");
         $requeteInscr->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
@@ -172,15 +178,17 @@ function participer($bdd)
         $idInscr = $requeteInscr->fetchAll(pdo::FETCH_CLASS);
         $idInscr = objectToArray($idInscr);
 
-        if (!empty($idInscr[0])) {
-            echo ("vous participez déjà à cet evenement");
+
+
+        if (empty($idInscr)) {
+
+
+
+            $requeteParticiper = $bdd->prepare("INSERT INTO `evenementutilisateur` (`id_evenement`, `id_Utilisateur`) VALUES (:idEvenement, :idUtilisateur);");
+            $requeteParticiper->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
+            $requeteParticiper->bindValue(':idEvenement', $_POST['participer'], PDO::PARAM_INT);
+            $requeteParticiper->execute();
         }
-
-
-        $requeteParticiper = $bdd->prepare("INSERT INTO `evenementutilisateur` (`id_evenement`, `id_Utilisateur`) VALUES (:idEvenement, :idUtilisateur);");
-        $requeteParticiper->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
-        $requeteParticiper->bindValue(':idEvenement', $_POST['participer'], PDO::PARAM_INT);
-        $requeteParticiper->execute();
     } else {
         header('location=../public/indexAccueil.php');
         exit();
