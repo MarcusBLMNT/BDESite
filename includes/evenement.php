@@ -2,6 +2,7 @@
 
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
+include('../script/scriptRecurrenceEvt.php');
 
 
 
@@ -24,6 +25,8 @@ include('../public/api/jsonUnicode.php');
     <?php
 
     $bdd = bddConnect();
+    recurrence();
+    //si le role n'est pas déterminé, applique automatiquement le role de l'étudiant
     if (isset($_SESSION["pseudo"])) {
         $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
     join role on utilisateur.id_Role=role.id where utilisateur.pseudo=:pseudo
