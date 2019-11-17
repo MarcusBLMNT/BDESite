@@ -9,14 +9,17 @@ function bddConnect()
         ';', $adresseBDDJsonParsed->{"pseudo"}, $adresseBDDJsonParsed->{"mdp"});
     return $bdd;
 }
+
 class DB
 {
 
     private $host = 'localhost';
     private $username = 'root';
     private $password = '';
-    private $database = 'projetWeb';
+    private $database = 'testWeb';
     private $db;
+
+
 
 
 
