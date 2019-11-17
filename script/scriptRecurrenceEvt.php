@@ -28,7 +28,7 @@ function roll($mkTimeHier)
     foreach ($repEvtRecHier as $evtHier) {
 
 
-        var_dump($evtHier);
+
 
         switch ((int) $evtHier['id_Temporalite']) {
             case 1:
