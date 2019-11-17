@@ -6,7 +6,7 @@ class DB
     private $host = 'localhost';
     private $username = 'root';
     private $password = '';
-    private $database = 'testWeb';
+    private $database = 'projetWeb';
     private $db;
 
 

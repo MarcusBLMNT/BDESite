@@ -60,6 +60,8 @@ echo $table2[0];
 
 $req_is_article_already_in->closeCursor();
 
+
+
 include('../includes/footer.html');
 
 
