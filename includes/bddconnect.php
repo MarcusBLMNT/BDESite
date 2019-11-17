@@ -16,7 +16,7 @@ class DB
     private $host = 'localhost';
     private $username = 'root';
     private $password = '';
-    private $database = 'testWeb';
+    private $database = 'bddprojetweb';
     private $db;
 
 
@@ -34,10 +34,7 @@ class DB
             $this->database = $database;
         }
         try {
-            $this->db = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->database, $this->username, $this->password, array(
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8',
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
-            ));
+            $this->db = bddConnect();
         } catch (PDOException $e) {
             die('Impossible de se connnecter à la BDD');
         }
