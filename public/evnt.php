@@ -15,15 +15,11 @@
 <body>
     <header>
         <?php
-        include('../includes/headerOn.html'); ?>
+        include('../public/index.php');
 
-        <div class="row">
-            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" style="margin-left:0">
-                <?php
-                include('../includes/menu.php');
-                ?>
-            </div>
-        </div>
+
+        ?>
+
     </header>
     <div>
         <h1 class="titre">Evenements</h1>

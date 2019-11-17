@@ -1,0 +1,11 @@
+.card{
+    position: relative;
+    border: none;
+}
+.card img:hover{ opacity: .8; transition: .5s; }
+.card-body { margin: 0; padding: 0; text-align: center}
+
+}
+.card :hover:after{
+    opacity: .9;
+} 

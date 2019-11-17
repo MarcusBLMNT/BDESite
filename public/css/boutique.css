@@ -1,8 +1,5 @@
-.produit{
-    margin-left: 500px;
-    background-color: rgb(172, 0, 172);
-    
-}
+
+
 
 #search{
 	padding: 5px;
@@ -19,4 +16,34 @@
 
 #search:focus{
 	width: 200px;	
+}
+
+
+
+.row-bis {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+}
+body{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+}
+.container{
+    width: 30%;
+}
+.card{
+    width: 600%;
+    border-width:1px 2px 3px 2px;
+ border-style:solid dotted;
+ border-color:black;
+ padding:0 10px;
+}
+.card-img-top{width: 500px;
+    height: 500px;
 }

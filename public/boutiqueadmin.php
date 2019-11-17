@@ -43,6 +43,8 @@
 
                 <li class="nav-item dropdown">
 
+
+
                     <a class="nav-link dropdown-toggle" href="boutique.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Catégories
                     </a>
@@ -53,7 +55,8 @@
 
                         <?php endforeach ?>
                     </div>
-                    <!--<div class="row">
+                <li><a href="../includes/addprd.php">Ajouter produits</a></li>
+                <!--<div class="row">
                         <aside class="col-lg-3 col-md-4">
                             <div class="panel list">
                                 <div class="panel-heading">
