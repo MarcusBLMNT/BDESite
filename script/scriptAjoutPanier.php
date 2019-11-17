@@ -6,7 +6,8 @@ $bdd = new PDO(
     ''
 );
 
-
+//$pseudo = $_SESSION['pseudo'];
+//$idarticle = $_POST['article'];
 $pseudo = "jojo";
 $idarticle = 3;
 $datetime = date("Y-m-d H:i:s");
