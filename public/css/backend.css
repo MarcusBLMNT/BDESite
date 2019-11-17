@@ -9,11 +9,20 @@
 
 
 .BarreMnu {
- display: flex;
- position: relative;
- min-height:100vh;
- 
+    display: flex;
+    position: relative;
+    min-height:100vh;
+    height:100%; 
+   }
+
+@media screen and (max-height: width) {
+    .BarreMnu {
+        display: flex;
+        position: relative;
+        min-height:100vh; 
+       }
 }
+
 .dropmenu ul{
     list-style-type: none;
     margin: 0px;
