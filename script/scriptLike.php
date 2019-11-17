@@ -1,5 +1,6 @@
 <?php
 session_start();
+//script rajoutant un like à une photo dans la bdd
 $bdd = new PDO(
     'mysql:host=localhost;dbname=projetweb;charset=utf8',
     'root',
