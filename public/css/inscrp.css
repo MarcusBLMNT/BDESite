@@ -1,20 +1,17 @@
 body {
     font-family: Tahoma, Geneva, sans-serif;
     color: #fff;
-    
-   background-image: url(../images/Capture.PNG);
+    background-image: url(../images/Capture.PNG);
     background-size: 50%;
 }
 
 .inscrip {
     background: rgba(252, 108, 13, 0.897);
-    padding: 40px;
+    padding: 3%;
     width: 320px;
-    margin: auto;
-    margin-top: 100px;
+    margin-top: 5vh;
+    margin-left: 30%;
     height: 600px;
-    
-    margin-left: 800px;
     border:3px double white;
     
    
@@ -33,7 +30,6 @@ input {
     border-bottom: 1px solid #fff;
     font-family: 'Play', sans-serif;
     font-size: 16px;
-    font-weight: 200px;
     padding: 10px 0 ;
     transition: border 0.5s;
     outline: none;

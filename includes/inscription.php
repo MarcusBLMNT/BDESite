@@ -60,13 +60,6 @@ if (isset($_POST['inscription'])) {
 
 
 <body>
-    <header>
-        <?php
-        include('../includes/headerOff.html');
-        //include('../includes/menu.php');
-        ?>
-    </header>
-    <!-- Formulaire des données. -->
     <div class="inscrip">
 
 
