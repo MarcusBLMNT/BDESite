@@ -53,72 +53,29 @@ $DB = new DB();
 
               <?php endforeach ?>
             </div>
-            <!--<div class="row">
-                        <aside class="col-lg-3 col-md-4">
-                            <div class="panel list">
-                                <div class="panel-heading">
-
-                                </div>
-                                <div>
-                                    <? php/*
-                                    include("../includes/bddconnect.php");
-                                    $article = $DB->query("SELECT distinct catégorie FROM `article` 
-                    WHERE category_id = '1' GROUP BY brand");
-                                    if (isset($_GET['categorie']) && $_GET['categorie'] != "") :
-                                        $sql .= " AND categorie IN ('" . implode("','", $_GET['categorie']) . "')";
-                                    endif;*/
-                                    ?>
-
-                                    <ul class="list-group">
-
-                                        <? php/* foreach ($categorie as $categories => $new_cat) :
-                                            if (isset($_GET['categorie'])) :
-                                                if (in_array($new_cat['categorie'], $_GET['categorie'])) :
-                                                    $brand_check = 'checked="checked"';
-                                                else : $brand_check = "";
-                                                endif;
-                                            endif;*/
-                                        ?>
-                                            <li class="list-group-item">
-                                                <div class="checkbox"><label>
-                                                        <input type="checkbox" value="
-                                    </ul>
-                                </div>
-                            </div>
-                        </aside>
-                    </div>-->
           </li>
           <ul class="lis-group">
 
 
             <div id="search_bar">
-              <p><input type="checkbox" name="tri[]" value="+" />Trier par prix -/+</p>
+              <form method='POST' action='../public/indexprixcroiss.php'>
+                <input type='checkbox' name='case' value='on'>
+                Trier prix -/+
 
-              <datalist id="test">
-                <?php $article = $DB->query('SELECT * FROM article ORDER BY prix ASC'); ?>
-                <?php foreach ($article as $articles) : ?>
-                  <option value="<?php echo $articles->nom;  ?>">
-                    <h5><?php echo $articles->description; ?></h5>
-                  <?php endforeach ?>
-
-              </datalist>
-
-
+                <input type='submit' name='exple1' value='Voir'>
+              </form>
             </div>
-            <p><input type="checkbox" name="tri[]" value="-" />Trier par prix +/-</p>
-            <p><input type="submit" name="submit" value="Trier" /></p>
-            <?
-            $ctrl = sizeof($type);
-            if ($ctrl != 1) {
-              echo "Attention vous n'avez pas cochez le bon nombre de cases !!";
-              exit;
-            } else {
-              echo "Vous avez choisi comme couleurs:<br>";
-              foreach ($type as $valeur) {
-                echo "le " . $valeur . ".<br>";
-              }
-            }
-            ?>
+            <div id="search_bar">
+              <form method='POST' action='../public/indexprixdec.php'>
+                <input type='checkbox' name='case' value='on'>
+                Trier prix +/-
+
+                <input type='submit' name='exple1' value='Voir'>
+              </form>
+            </div>
+
+
+
 
 
           </ul>
@@ -160,9 +117,9 @@ $DB = new DB();
     <?php $article = $DB->query('SELECT * FROM article'); ?>
     <?php foreach ($article as $articles) : ?>
       <div class="container mt-s">
-        <div class="row">
+        <div class="row row-bis">
           <div class="col-md-3">
-            <div class="card">
+            <div class="card card-bis">
               <img src="../public/images/<?php echo $articles->urlimage;  ?>" class="card-img-top">
               <div class="card-body">
 

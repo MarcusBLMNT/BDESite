@@ -1,7 +1,7 @@
 <?php
 //script faisant un lien avec la bdd -> évite la redondance de code
 //Pour changer le nom de la bdd aller dans public/api/adresseBDD/adresseBDD.json
-//fontion pour instancier un objet bdd connecté à notre base de données. l'addresse bdd est accessible via le fichier adresseBDD.json
+
 function bddConnect()
 {
     $adressebdd = file_get_contents('../public/api/AdresseBDD/adresseBDD.json');

@@ -26,6 +26,7 @@ include('../script/scriptRecurrenceEvt.php');
     <?php
 
     $bdd = bddConnect();
+    //fait marcher la recurrence des événements
     recurrence();
     //si le role n'est pas déterminé, applique automatiquement le role de l'étudiant
     if (isset($_SESSION["pseudo"])) {
