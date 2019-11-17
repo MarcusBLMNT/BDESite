@@ -12,6 +12,8 @@ if (isset($_POST['inscription'])) {
     $localisation = htmlentities(trim($_POST['localisation']));
     $mdp = htmlentities(trim($_POST['Mdp']));
     $mdp2 = htmlentities(trim($_POST['Mdp2']));
+    $password = $_POST['password'];
+
 
 
 
