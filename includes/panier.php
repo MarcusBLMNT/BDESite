@@ -34,8 +34,9 @@ if (
             $requete = $bdd->prepare("SELECT article.nom as nomArticle, article.prix as prixArticle ,
             quantite from utilisateur join commande on utilisateur.id=commande.id_Utilisateur join
             commandearticle on commande.id=commandearticle.id_commande join article on
-            commandearticle.id_Article=article.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\" and commande.faite=0
+            commandearticle.id_Article=article.id where utilisateur.pseudo=:pseudo and commande.faite=0
             ");
+            $requete->bindValue(':pseudo', $_SESSION["pseudo"], PDO::PARAM_STR);
 
             $requete->execute();
 

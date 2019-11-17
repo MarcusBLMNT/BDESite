@@ -3,6 +3,10 @@
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
 $bdd = bddConnect();
+
+
+
+//si personne n'est connecté ou si la personne connectée n'est pas admin, redirection vers la page de connexion
 if (!empty($_SESSION["pseudo"])) {
 
     $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
@@ -26,22 +30,27 @@ join role on utilisateur.id_Role=role.id where utilisateur.pseudo=\"" . $_SESSIO
 
 if (isset($_POST) && !empty($_POST)) {
 
-
+    //si la recurrence ==0, inserer null dans temporalité et 0 dans recurrence. sinon, inserer 1 dans reccurence et l'id_temporalité correspondante
     if ($_POST['recurrence'] == "0") {
         $requeteAddEvent = $bdd->prepare(
             "INSERT INTO `evenement` (`id`, `date`, `nom`, `description`, `url_image`, `prix`, `recurrence`, `id_Temporalite`)
          VALUES  
-         (NULL,\"" . $_POST['date'] . "\", \"" . $_POST['nom'] . "\", \"" . $_POST['description'] . "\", \"" . $_POST['image'] . "\",
-        \"" . $_POST['prix'] . "\", 0,  NULL)"
+         (NULL,:date, :nom, :description, :image, :prix, 0,  NULL)"
         );
     } else {
         $requeteAddEvent = $bdd->prepare(
             "INSERT INTO `evenement` (`id`, `date`, `nom`, `description`, `url_image`, `prix`, `recurrence`, `id_Temporalite`)
          VALUES  
-         (NULL,\"" . $_POST['date'] . "\", \"" . $_POST['nom'] . "\", \"" . $_POST['description'] . "\", \"" . $_POST['image'] . "\",
-        \"" . $_POST['prix'] . "\", 1,  " . $_POST['recurrence'] . " )"
+         (NULL,:date, :nom,:description, :image, :prix, 1,  :recurrence )"
         );
+        $requeteAddEvent->bindValue(':recurrence', $_POST['recurrence'], PDO::PARAM_INT);
     }
+    $requeteAddEvent->bindValue(':date',  $_POST['date'], PDO::PARAM_STR);
+    $requeteAddEvent->bindValue(':nom',  $_POST['nom'], PDO::PARAM_STR);
+    $requeteAddEvent->bindValue(':description', $_POST['description'], PDO::PARAM_STR);
+    $requeteAddEvent->bindValue(':image', $_POST['image'], PDO::PARAM_STR);
+    $requeteAddEvent->bindValue(':prix', $_POST['prix'], PDO::PARAM_STR);
+
 
 
 

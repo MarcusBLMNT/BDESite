@@ -3,7 +3,7 @@
     padding-top:50vh;
     color:gray;
 }
-.noDecoration{
+a {
     text-decoration:none;
  }
 #total{
@@ -49,7 +49,10 @@ prix{
     font-size:30px;
     
 }
-
+#payer:hover{
+    background-color:rgb(255, 182, 47);
+    text-decoration: none;
+}
 #payer{
   font-weight:bold;
   font-size:20px;
@@ -61,4 +64,7 @@ prix{
     color:white;
     text-decoration:none;
     
+}
+a{
+    text-decoration:none;
 }

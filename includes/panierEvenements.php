@@ -56,7 +56,7 @@ if (
         } else {
             foreach ($contenuPanier as $article) {
 
-                echo ("<div style=\"font-weight: bold\">" . $article['nom'] . "</div>le " . $article['date'] . "<br>");
+                echo ("<div class='article'><div style=\"font-weight: bold\">" . $article['nom'] . "</div>le " . $article['date'] . "</div>");
             }
         }
     }

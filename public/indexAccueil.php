@@ -22,6 +22,9 @@ include('../includes/header.php'); ?>
         include('../includes/accueil.html');
 
 
+        echo ($tomorrow);
+
+
         ?>
 
 
