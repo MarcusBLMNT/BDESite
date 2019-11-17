@@ -7,12 +7,13 @@ h1{
     text-align:center;
 }
 
-h3{
+.presentation{
 	text-align: justify;
 	font-size: 20px;
 	border: solid;
 	border-color: black;
-	padding: 10px;
+	padding: 5px;
+	margin: 10px;
 	font-weight: bold;
 	text-align: justify;
 }
@@ -24,4 +25,12 @@ h2{
 .d-block {
 	border-color: black;
 
+}
+
+.container{
+	padding: 10px;
+}
+
+.bd-example{
+	padding: 10px;
 }

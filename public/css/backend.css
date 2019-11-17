@@ -47,16 +47,15 @@
 
     width: auto;
     min-height:100%;
-
     background: #000000;
     padding: 100px 0;
 
 }
  .BarreMnu .sidebar ul li{
      padding: 15px;
-     border-bottom:1px solig rgba (0,0,0,0.05);
-     border-top:1px solig rgba (225,225,225,0.05);
+
  }
+
  .BarreMnu .sidebar ul li a{
      color: #bdbdbd;
      display: block;
