@@ -1,8 +1,7 @@
 <?php
 session_start();
 include('../public/api/jsonUnicode.php');
-$_SESSION['pseudo'] = "elise";
-$_SESSION['motDePasse'] = "mdp";
+
 
 if (
     !isset($_SESSION['pseudo']) || !isset($_SESSION['motDePasse']) ||

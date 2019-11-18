@@ -74,6 +74,7 @@ include('../script/scriptRecurrenceEvt.php');
             if ($idAdmin[0]["id"] == "1" || $idAdmin[0]["id"] == "3") {
 
                 ?>
+                <a href="../public/scriptZip.php"><button>Telecharger photos format Zip</button></a>
                 <a href="../public/indexAddEvent.php"><button>Ajouter evenement</button></a>
                 <a href="../public/indexSupprEvent.php"><button>Supprimer evenement</button></a>
         <?php
@@ -102,8 +103,18 @@ include('../script/scriptRecurrenceEvt.php');
                             <div onclick=<?php participer($bdd) ?>>
                                 <button type=submit name="participer" value=<?php echo ($evt['id']) ?>>
                                     participer
-                                </button></div>
+                                </button></div><?php
+                                                            if ($idAdmin[0]["id"] == "1" || $idAdmin[0]["id"] == "3") {
+
+
+                                                                ?>
+                                <form action="../script/scriptCSVInscrit.php" method="post">
+                                    <button name='event' value=<?php echo ($evt['id']); ?>>Telecharger inscrits csv</button>
+                                </form>
+
+
                 <?php
+                            }
                         }
                     }
                 }
@@ -125,7 +136,8 @@ include('../script/scriptRecurrenceEvt.php');
                         printEvt($evtP);
 
                         ?>
-                        <a href=""><button>souvenirs</button></a>
+                        <button>souvenirs</button>
+
                 <?php
 
                     }
