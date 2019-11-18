@@ -4,8 +4,7 @@ include('../public/api/jsonUnicode.php');
 
 
 if (
-    !isset($_SESSION['pseudo']) || !isset($_SESSION['motDePasse']) ||
-    empty($_SESSION['pseudo']) || empty($_SESSION['motDePasse'])
+    !isset($_SESSION['pseudo'])
 ) {
     header('Location:indexAccueil.php');
     exit();
