@@ -6,6 +6,7 @@ function recurrence()
     $dernierCheck = file_get_contents('saveDay.txt');
     if (empty($dernierCheck)) {
         file_put_contents('saveDay.txt', date("d"));
+        roll(mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
     } else {
         $mkTimeHier = mktime(0, 0, 0, date('m'), date('d') - 1, date('Y'));
         $hier = date("d", $mkTimeHier);
@@ -53,8 +54,8 @@ function roll($mkTimeHier)
         $reqAddNewEvt->bindValue(':nom', $evtHier['nom'], PDO::PARAM_STR);
         $reqAddNewEvt->bindValue(':description', $evtHier['description'], PDO::PARAM_STR);
         $reqAddNewEvt->bindValue(':image', $evtHier['url_image'], PDO::PARAM_STR);
-        $reqAddNewEvt->bindValue(':prix', $evtHier['prix'], PDO::PARAM_STR);
-        $reqAddNewEvt->bindValue(':temp', $evtHier['id_Temporalite'], PDO::PARAM_STR);
+        $reqAddNewEvt->bindValue(':prix', (int) $evtHier['prix'], PDO::PARAM_STR);
+        $reqAddNewEvt->bindValue(':temp', (int) $evtHier['id_Temporalite'], PDO::PARAM_STR);
 
         $reqAddNewEvt->execute();
     }
