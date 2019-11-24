@@ -14,21 +14,17 @@ $bdd = bddConnect();
 
 </head>
 
-<body onload="getRSS('sujets')">
-    <!-- pour chaque catégorie, créer une carte avec de quoi changer de page. pour chaque catégorie,
-    il faudra faire un count* de toutes les données de cette catégorie afin de connaitre le nombre de boutons à afficher
-    chaque page contient 10 résultats (sauf potentiellement la derniere).
+<body onload="count()">
+    <div id="contain">
+        <form>
+            <input type="search" placeholder="rechercher" name="recherche"></form> <!-- pour chaque catégorie, créer une carte avec de quoi changer de page. pour chaque catégorie, il faudra faire un count* de toutes les données de cette catégorie afin de connaitre le nombre de boutons à afficher chaque page contient 10 résultats (sauf potentiellement la derniere). du coup pour chaque bouton, on calcule son nom(1,2,3,4...), on calcule l'offset(son nom*10, la limite êtant toujours égale à 10) et on envoie ces valeurs à la fonction js qui va s'occuper du reste -->
+        <div id="resultatAjax" class="row">
 
-
-    du coup pour chaque bouton, on calcule son nom(1,2,3,4...), on calcule l'offset(son nom*10, la limite êtant toujours égale à 10) et on envoie ces valeurs
-    à la fonction js qui va s'occuper du reste -->
-    <div id="resultatAjax">
-
+        </div>
     </div>
 
-
 </body>
-
-<script type="text/javascript" src="../public/js/forum.js"></script>
+<script type="text/javascript" src="../public/js/forum.js">
+</script>
 
 </html>
