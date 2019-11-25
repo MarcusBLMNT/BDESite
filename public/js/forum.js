@@ -31,16 +31,16 @@ function count() {
                             console.log("readystate=" + sujets.readyState + " response=" + sujets.response);
                             if (sujets.response != '0') {
 
-                                returnvar = sujets.response;
+                                console.log(sujets.response);
 
 
                             } else {
 
-                                return '0';
+                                console.log('0');
                                 // return "la requete $_POST est mal formulée";
                             }
                         } else {
-                            return sujets.readyState;
+                            console.log(sujets.readyState);
                         }
 
                     }
@@ -90,7 +90,6 @@ function getFromBdd(requete, offset, limit) {
     var returnvar = 'valeurinit';
     var sujets = new XMLHttpRequest();
     sujets.open('POST', 'js/para.php', true);
-    console.log("requete=" + requete);
     sujets.send("requete=" + requete);
     return sujets;
 
