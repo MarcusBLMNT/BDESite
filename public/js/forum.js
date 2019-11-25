@@ -12,17 +12,38 @@ function count() {
     rss.onreadystatechange = function () {
         if (rss.readyState == 4) {
             if (rss.response != '0') {
+                console.log(rss.response);
                 categories = JSON.parse(rss.response);
                 categories.forEach(categorie => {
 
                     printTitreCategorie(categorie);
 
-                    div.innerHTML += '<div id="sujets' + categorie['nom'] + '">truc</div>';
+                    div.innerHTML += '<div id="sujets' + categorie['nom'] + '"></div>';
                     // var sujetDeLaPage = reponsegetFromBdd('sujets', 0, 10);
                     // sujetDeLaPage.forEach(sujet => {
                     //     document.getElementById("sujets" + categorie['nom']).innerHTML += '<div id="sujet' + sujet['nom'] + '">' + sujet['nom'] + '</div>';
                     // });
+                    var sujets = getFromBdd('sujets', '0', '10');
 
+                    sujets.onreadystatechange = function () {
+
+                        if (sujets.readyState == 4) {
+                            console.log("readystate=" + sujets.readyState + " response=" + sujets.response);
+                            if (sujets.response != '0') {
+
+                                returnvar = sujets.response;
+
+
+                            } else {
+
+                                return '0';
+                                // return "la requete $_POST est mal formulée";
+                            }
+                        } else {
+                            return sujets.readyState;
+                        }
+
+                    }
 
 
 
@@ -34,20 +55,22 @@ function count() {
                     printBoutonsPage(getNbPages, categorie);
                 });
             } else {
-                div.innerHTML += "la requete $_POST est mal formulée"
+                div.innerHTML += "la requete $_POST est mal formulée";
             }
-        }
-    }
 
-
-    function getNbPages(categorie) {
-        var nombrepages = Math.trunc(parseInt(categorie['nbSujet'], 10) / 10);
-        if (parseInt(categorie['nbSujet'], 10) / 10 > nombrepages) {
-            nombrepages++;
         }
-        return nombrepages;
     }
 }
+
+
+function getNbPages(categorie) {
+    var nombrepages = Math.trunc(parseInt(categorie['nbSujet'], 10) / 10);
+    if (parseInt(categorie['nbSujet'], 10) / 10 > nombrepages) {
+        nombrepages++;
+    }
+    return nombrepages;
+}
+
 
 function printTitreCategorie(categorie) {
     div.innerHTML += '<div id="partie' + categorie['nom'] + '" class="col-md-6 col-xs-3"><div class="titre">' + categorie['nom'];
@@ -64,23 +87,12 @@ function printBoutonsPage(getNbPages, categorie) {
 }
 
 function getFromBdd(requete, offset, limit) {
-
-
-    rss.send("requete=" + requete + "&offset=" + offset + "&limit=" + limit);
-    rss.onreadystatechange = function () {
-        if (rss.readyState == 4) {
-            if (rss.response != '0') {
-                return JSON.parse(rss.response);
-                // categories = JSON.parse(rss.response);
-                // categories.forEach(sujet => {
-                //     div.innerHTML += '<div id="sujet">' + sujet['nom'] + '</div>';
-                // });
-            } else {
-                return '0';
-                // return "la requete $_POST est mal formulée";
-            }
-        }
-    }
+    var returnvar = 'valeurinit';
+    var sujets = new XMLHttpRequest();
+    sujets.open('POST', 'js/para.php', true);
+    console.log("requete=" + requete);
+    sujets.send("requete=" + requete);
+    return sujets;
 
 }
 
