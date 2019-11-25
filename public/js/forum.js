@@ -41,8 +41,9 @@ function count() {
         }
     }
     var sujets = new XMLHttpRequest();
-    sujets.open('POST', '../public/js/para.php', true);
-    sujets.send("requete=count");
+    sujets.open('POST', 'js/para.php', true);
+    sujets.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    sujets.send("requete=sujets");
 
     sujets.onreadystatechange = function () {
 
