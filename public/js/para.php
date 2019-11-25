@@ -46,5 +46,5 @@ if (isset($_POST['requete'])) {
         echo $requete;
     }
 } else {
-    echo '0';
+    echo $requete;
 }
