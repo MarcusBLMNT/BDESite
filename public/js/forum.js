@@ -23,27 +23,7 @@ function count() {
                     // sujetDeLaPage.forEach(sujet => {
                     //     document.getElementById("sujets" + categorie['nom']).innerHTML += '<div id="sujet' + sujet['nom'] + '">' + sujet['nom'] + '</div>';
                     // });
-                    var sujets = getFromBdd('sujets', '0', '10');
 
-                    sujets.onreadystatechange = function () {
-
-                        if (sujets.readyState == 4) {
-                            console.log("readystate=" + sujets.readyState + " response=" + sujets.response);
-                            if (sujets.response != '0') {
-
-                                console.log(sujets.response);
-
-
-                            } else {
-
-                                console.log('0');
-                                // return "la requete $_POST est mal formulée";
-                            }
-                        } else {
-                            console.log(sujets.readyState);
-                        }
-
-                    }
 
 
 
@@ -59,6 +39,23 @@ function count() {
             }
 
         }
+    }
+    var sujets = new XMLHttpRequest();
+    sujets.open('POST', '../public/js/para.php', true);
+    sujets.send("requete=count");
+
+    sujets.onreadystatechange = function () {
+
+        if (sujets.readyState == 4) {
+            console.log("readystate=" + sujets.readyState + " response=" + sujets.response);
+            console.log(sujets.response);
+            console.log('0');
+            // return "la requete $_POST est mal formulée";
+
+        } else {
+            console.log(sujets.readyState);
+        }
+
     }
 }
 
@@ -86,14 +83,7 @@ function printBoutonsPage(getNbPages, categorie) {
     div.innerHTML += '</div></div>';
 }
 
-function getFromBdd(requete, offset, limit) {
-    var returnvar = 'valeurinit';
-    var sujets = new XMLHttpRequest();
-    sujets.open('POST', 'js/para.php', true);
-    sujets.send("requete=" + requete);
-    return sujets;
 
-}
 
 
 
