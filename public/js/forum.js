@@ -1,13 +1,22 @@
 //faire ça pour chaque catégorie
 var div = document.getElementById("resultatAjax");
 
-var rss = new XMLHttpRequest();
-rss.open('POST', '../public/js/para.php', true);
-rss.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-function count() {
 
 
+function init() {
+
+
+    getTitleFromBdd();
+
+
+
+}
+
+
+function getTitleFromBdd() {
+    var rss = new XMLHttpRequest();
+    rss.open('POST', 'js/para.php', true);
+    rss.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     rss.send("requete=count");
     rss.onreadystatechange = function () {
         if (rss.readyState == 4) {
@@ -15,50 +24,45 @@ function count() {
                 console.log(rss.response);
                 categories = JSON.parse(rss.response);
                 categories.forEach(categorie => {
-
                     printTitreCategorie(categorie);
-
-                    div.innerHTML += '<div id="sujets' + categorie['nom'] + '"></div>';
-                    // var sujetDeLaPage = reponsegetFromBdd('sujets', 0, 10);
-                    // sujetDeLaPage.forEach(sujet => {
-                    //     document.getElementById("sujets" + categorie['nom']).innerHTML += '<div id="sujet' + sujet['nom'] + '">' + sujet['nom'] + '</div>';
-                    // });
-
-
-
-
-
-
-
-
-
-                    printBoutonsPage(getNbPages, categorie);
+                    document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="sujets' + categorie['nom'] + '"></div>';
+                    setSujets(categorie, 0, 10);
+                    printBoutonsPage(categorie);
                 });
-            } else {
+            }
+            else {
                 div.innerHTML += "la requete $_POST est mal formulée";
             }
-
         }
     }
-    var sujets = new XMLHttpRequest();
-    sujets.open('POST', 'js/para.php', true);
-    sujets.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    sujets.send("requete=sujets");
 
-    sujets.onreadystatechange = function () {
+}
 
-        if (sujets.readyState == 4) {
-            console.log("readystate=" + sujets.readyState + " response=" + sujets.response);
-            console.log(sujets.response);
-            console.log('0');
-            // return "la requete $_POST est mal formulée";
+function setSujets(categorieAct, offset, limit) {
+    var rss2 = new XMLHttpRequest();
+    rss2.open('POST', 'js/para.php', true);
+    rss2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    rss2.send('requete=sujets&offset=' + offset + '&limit=' + limit + "&categorie=" + categorieAct['nom']);
+    rss2.onreadystatechange = function () {
+        if (rss2.readyState == 4) {
+            if (rss2.response != '0') {
 
-        } else {
-            console.log(sujets.readyState);
+                sujets = JSON.parse(rss2.response);
+                console.log(sujets);
+                sujets.forEach(sujet => {
+                    document.getElementById('sujets' + categorieAct['nom']).innerHTML += '<div id="sujet">' + sujet['nom'] + '</div>';
+
+                });
+            }
+            else {
+
+            }
         }
-
     }
 }
+
+
+
 
 
 function getNbPages(categorie) {
@@ -74,7 +78,7 @@ function printTitreCategorie(categorie) {
     div.innerHTML += '<div id="partie' + categorie['nom'] + '" class="col-md-6 col-xs-3"><div class="titre">' + categorie['nom'];
 }
 
-function printBoutonsPage(getNbPages, categorie) {
+function printBoutonsPage(categorie) {
     var nombrepages = getNbPages(categorie);
     document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="boutonsPage'
         + categorie['nom'] + '"></div>';

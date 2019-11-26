@@ -14,7 +14,8 @@ $bdd = bddConnect();
 
 </head>
 
-<body onload="count()">
+<body onload="init()">
+
 
     <!-- pour chaque catégorie, créer une carte avec de quoi changer de page. pour chaque catégorie,
     il faudra faire un count* de toutes les données de cette catégorie afin de connaitre le nombre de boutons à afficher

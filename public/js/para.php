@@ -22,8 +22,10 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
 
         case 'sujets':
 
-            $requete = $bdd->prepare("SELECT * FROM `sujet` " . $limit . $offset);
-
+            $requete = $bdd->prepare("SELECT sujet.*,categoriesujet.nom as categorie
+            FROM `sujet` join categoriesujet on sujet.id_categorie=categoriesujet.id wherecategoriesujet.nom=:categorie
+            " . $limit . $offset);
+            $requete->bindValue(':categorie', $_POST['categorie'], PDO::PARAM_STR);
             break;
         case 'count':
             $requete = $bdd->prepare("SELECT categoriesujet.nom ,count(*) as nbSujet 
@@ -43,6 +45,8 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
         echo ($truc);
     } else {
         echo $requete;
+        echo $limit;
+        echo $offset;
     }
 } else {
 
