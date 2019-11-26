@@ -46,9 +46,8 @@ function setSujets(categorieAct, offset, limit) {
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
             if (rss2.response != '0') {
-
+                console.log(rss2.response);
                 sujets = JSON.parse(rss2.response);
-                console.log(sujets);
                 sujets.forEach(sujet => {
                     document.getElementById('sujets' + categorieAct['nom']).innerHTML += '<div id="sujet">' + sujet['nom'] + '</div>';
 
