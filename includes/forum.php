@@ -14,7 +14,7 @@ $bdd = bddConnect();
 
 </head>
 
-<body onload="init()">
+<body onload=init()>
 
 
     <!-- pour chaque catégorie, créer une carte avec de quoi changer de page. pour chaque catégorie,

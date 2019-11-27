@@ -26,7 +26,7 @@ function getTitleFromBdd() {
                 categories.forEach(categorie => {
                     printTitreCategorie(categorie);
                     document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="sujets' + categorie['nom'] + '"></div>';
-                    setSujets(categorie, 0, 10);
+                    setSujets(categorie['nom'], 0, 10);
                     printBoutonsPage(categorie);
                 });
             }
@@ -42,14 +42,16 @@ function setSujets(categorieAct, offset, limit) {
     var rss2 = new XMLHttpRequest();
     rss2.open('POST', 'js/para.php', true);
     rss2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    rss2.send('requete=sujets&offset=' + offset + '&limit=' + limit + "&categorie=" + categorieAct['nom']);
+    rss2.send('requete=sujets&offset=' + offset + '&limit=' + limit + "&categorie=" + categorieAct);
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
             if (rss2.response != '0') {
                 console.log(rss2.response);
                 sujets = JSON.parse(rss2.response);
+                document.getElementById('sujets' + categorieAct).innerHTML = "";
                 sujets.forEach(sujet => {
-                    document.getElementById('sujets' + categorieAct['nom']).innerHTML += '<div id="sujet">' + sujet['nom'] + '</div>';
+
+                    document.getElementById('sujets' + categorieAct).innerHTML += '<div id="sujet">' + sujet['nom'] + '</div>';
 
                 });
             }
@@ -82,7 +84,9 @@ function printBoutonsPage(categorie) {
     document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="boutonsPage'
         + categorie['nom'] + '"></div>';
     for (var i = 1; i <= nombrepages; i++) {
-        document.getElementById('boutonsPage' + categorie['nom']).innerHTML += '<button onclick="">' + i + '</div>';
+        var offset = 10 * i - 10;
+        console.log('<button onclick=setSujet("' + categorie['nom'] + '",' + offset + ',10)">' + i + '</div>');
+        document.getElementById('boutonsPage' + categorie['nom']).innerHTML += '<button onclick=setSujets("' + categorie['nom'] + '",' + offset + ',10)>' + i + '</div>';
     }
     div.innerHTML += '</div></div>';
 }
