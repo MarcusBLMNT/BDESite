@@ -21,7 +21,7 @@ function getTitleFromBdd() {
     rss.onreadystatechange = function () {
         if (rss.readyState == 4) {
             if (rss.response != '0') {
-                console.log(rss.response);
+
                 categories = JSON.parse(rss.response);
                 categories.forEach(categorie => {
                     printTitreCategorie(categorie);
@@ -46,14 +46,18 @@ function setSujets(categorieAct, offset, limit) {
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
             if (rss2.response != '0') {
-                console.log(rss2.response);
+
                 sujets = JSON.parse(rss2.response);
-                document.getElementById('sujets' + categorieAct).innerHTML = "";
+                var textInHtml = ' <form method="POST" action="../includes/sujet.php"';
                 sujets.forEach(sujet => {
 
-                    document.getElementById('sujets' + categorieAct).innerHTML += '<div id="sujet">' + sujet['nom'] + '</div>';
+
+                    textInHtml += '<div id="sujet"><button id="boutonsujet" value="' + sujet['id'] + '" name=sujet>' + sujet['nom'] + '</button>';
 
                 });
+                textInHtml += '</form>';
+                document.getElementById('sujets' + categorieAct).innerHTML = textInHtml;
+
             }
             else {
 
@@ -85,7 +89,6 @@ function printBoutonsPage(categorie) {
         + categorie['nom'] + '"></div>';
     for (var i = 1; i <= nombrepages; i++) {
         var offset = 10 * i - 10;
-        console.log('<button onclick=setSujet("' + categorie['nom'] + '",' + offset + ',10)">' + i + '</div>');
         document.getElementById('boutonsPage' + categorie['nom']).innerHTML += '<button onclick=setSujets("' + categorie['nom'] + '",' + offset + ',10)>' + i + '</div>';
     }
     div.innerHTML += '</div></div>';

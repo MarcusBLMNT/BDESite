@@ -31,6 +31,7 @@ function roll($mkTimeHier)
 
 
 
+
         switch ((int) $evtHier['id_Temporalite']) {
             case 1:
                 $newTimeStamp = strtotime('+1 day', $mkTimeHier);
