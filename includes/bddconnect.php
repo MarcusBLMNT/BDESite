@@ -4,7 +4,7 @@
 
 function bddConnect()
 {
-    $adressebdd = file_get_contents('D:\programs\wamp\www\BDESiteGit\BDESite\public\api\AdresseBDD\adresseBDD.json');
+    $adressebdd = file_get_contents('C:\wamp64\www\BDESite\BDESite\public\api\AdresseBDD\adresseBDD.json');
     $adresseBDDJsonParsed = json_decode($adressebdd);
     $bdd = new PDO('mysql:host=' . $adresseBDDJsonParsed->{"host"} . ';port=' .
         $adresseBDDJsonParsed->{"port"} . ';dbname=' . $adresseBDDJsonParsed->{"dbname"} .
