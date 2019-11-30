@@ -19,11 +19,14 @@ $tab = objectToArray($tab);
 
 </head>
 
-<body>
+<body onkeydown="if(event.keyCode==13){ 
+    submit();
+    
+    }">
 
 
 
-    <div id="HeaderSujet">
+    <div id=" HeaderSujet">
         <div id="titreSujet">
             <?php
             echo ($tab[0]['nomSujet']);
@@ -40,13 +43,17 @@ $tab = objectToArray($tab);
 
         <script>
             function submit() {
-                var reponse = document.getElementById('reponse').value;
-                addNewComment(reponse, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_POST['sujet']) ?>)
+                var reponse = document.getElementById('reponse');
+                if (reponse.value != '') {
+                    addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_POST['sujet']) ?>);
+                    reponse.value = '';
+
+                }
 
 
             }
         </script>
-        <button onclick="submit()">bouton</button>
+        <button " onclick=" submit()">bouton</button>
 
     </div>
 </body>
