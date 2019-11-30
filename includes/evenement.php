@@ -191,6 +191,8 @@ function participer($bdd)
         $requeteInscr = $bdd->prepare("SELECT * from evenementutilisateur where id_Utilisateur =:idUtilisateur and id_Evenement=:idEvenement");
         $requeteInscr->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
         $requeteInscr->bindValue(':idEvenement', $_POST['participer'], PDO::PARAM_INT);
+
+
         $requeteInscr->execute();
         $idInscr = $requeteInscr->fetchAll(pdo::FETCH_CLASS);
         $idInscr = objectToArray($idInscr);

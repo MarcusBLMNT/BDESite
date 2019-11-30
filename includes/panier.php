@@ -37,6 +37,7 @@ if (
             ");
             $requete->bindValue(':pseudo', $_SESSION["pseudo"], PDO::PARAM_STR);
 
+
             $requete->execute();
 
             $contenuPanier = $requete->fetchAll(PDO::FETCH_CLASS);

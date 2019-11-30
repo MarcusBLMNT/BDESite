@@ -75,7 +75,6 @@ function printBoutonsPage(categorie) {
     var nombrepages = getNbPages(categorie);
     document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="boutonsPage'
         + categorie['nom'] + '"></div>';
-    console.log(categorie['nom'])
     for (var i = 1; i <= nombrepages; i++) {
         var offset = 10 * i - 10;
         var temp = '<button onclick=setSujets("' + categorie['nom'] + '",' + offset + ',10)>' + i + '</div>';
