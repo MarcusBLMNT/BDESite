@@ -1,19 +1,7 @@
 //faire ça pour chaque catégorie
 var div = document.getElementById("resultatAjax");
 
-
-
 function init() {
-
-
-    getTitleFromBdd();
-
-
-
-}
-
-
-function getTitleFromBdd() {
     var rss = new XMLHttpRequest();
     rss.open('POST', 'js/para.php', true);
     rss.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -48,7 +36,7 @@ function setSujets(categorieAct, offset, limit) {
             if (rss2.response != '0') {
 
                 sujets = JSON.parse(rss2.response);
-                var textInHtml = ' <form method="POST" action="../includes/sujet.php"';
+                var textInHtml = ' <form method="POST" action="../public/indexSujet.php"';
                 sujets.forEach(sujet => {
 
 
