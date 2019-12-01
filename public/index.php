@@ -41,5 +41,6 @@ include('../includes/footer.html');
 
 ?>
 
+<script src="js/testajax.js"></script>
 
 </html>

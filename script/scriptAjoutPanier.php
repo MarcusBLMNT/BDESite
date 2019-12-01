@@ -48,12 +48,6 @@ if ($table == NULL) {
 
 
 
-
-
-
-
-
-
 //requete ajoutant un nouvel article au panier
 $req_add_to_panier = $bdd->prepare('CALL add_order_article(:idorder, :id_article, 1)');
 $req_add_to_panier->bindValue(':idorder', $id_commande, PDO::PARAM_STR);
