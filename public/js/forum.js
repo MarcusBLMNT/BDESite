@@ -1,5 +1,5 @@
 //faire ça pour chaque catégorie
-var div = document.getElementById("resultatAjax");
+//var div = document.getElementById("resultatAjax");
 
 function init() {
     var rss = new XMLHttpRequest();
@@ -9,7 +9,7 @@ function init() {
     rss.onreadystatechange = function () {
         if (rss.readyState == 4) {
             if (rss.response != '0') {
-                console.log(rss.response);
+
                 categories = JSON.parse(rss.response);
                 categories.forEach(categorie => {
                     printTitreCategorie(categorie);
