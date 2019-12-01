@@ -1,13 +1,15 @@
 //faire ça pour chaque catégorie
-//var div = document.getElementById("resultatAjax");
-
+var div = document.getElementById("resultatAjax");
 function init() {
+
     var rss = new XMLHttpRequest();
     rss.open('POST', 'js/para.php', true);
     rss.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     rss.send("requete=sujets");
     rss.onreadystatechange = function () {
+
         if (rss.readyState == 4) {
+
             if (rss.response != '0') {
 
                 categories = JSON.parse(rss.response);
@@ -32,8 +34,11 @@ function setSujets(categorieAct, offset, limit) {
     rss2.open('POST', 'js/para.php', true);
     rss2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     rss2.send('requete=sujets&offset=' + offset + '&limit=' + limit + "&categorie=" + categorieAct);
+
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
+
+
             if (rss2.response != '0') {
 
                 sujets = JSON.parse(rss2.response);
@@ -54,10 +59,6 @@ function setSujets(categorieAct, offset, limit) {
         }
     }
 }
-
-
-
-
 
 function getNbPages(categorie) {
     var nombrepages = Math.trunc(parseInt(categorie['nbSujet'], 10) / 10);
@@ -85,9 +86,3 @@ function printBoutonsPage(categorie) {
     }
     div.innerHTML += '</div></div>';
 }
-
-
-
-
-
-

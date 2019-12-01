@@ -1,4 +1,4 @@
-<form action="../script/scriptNewPost.php" method="post">
+    <form action="../script/scriptNewPost.php" method="post">
     <p>Titre : <input type="text" name="nom"></p>
     <p>Contenu de votre post : <input type="textarea" name="description"></p>
 
