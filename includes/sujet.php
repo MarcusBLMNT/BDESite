@@ -1,7 +1,7 @@
 <?php
 require 'bddconnect.php';
 require '../public/api/jsonUnicode.php';
-var_dump($_POST);
+
 $bdd = bddConnect();
 $reqPseudoNomCreateur = $bdd->prepare(
     "SELECT utilisateur.pseudo as pseudoCreateur, sujet.nom as nomSujet from sujet join utilisateur on sujet.id_utilisateur=utilisateur.id where sujet.id=:idsujet"
@@ -15,13 +15,11 @@ $tab = objectToArray($tab);
 <html>
 
 <head>
-    <link rel="stylesheet" href="">
-
+    <link rel="stylesheet" href="../public/css/sujet.css">
 </head>
 
 <body onkeydown="if(event.keyCode==13){ 
-    submit();
-    
+    submit();    
     }">
 
 
@@ -37,6 +35,32 @@ $tab = objectToArray($tab);
             echo ($tab[0]['pseudoCreateur']);
             ?>
         </div>
+    </div>
+    <div id="messages">
+        <?php
+        $reqmsg = $bdd->prepare("SELECT message.date as datemsg, corps, utilisateur.pseudo
+from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:sujetId order by datemsg ASC");
+
+        $reqmsg->bindValue(':sujetId', $_POST['sujet'], PDO::PARAM_INT);
+        $reqmsg->execute();
+        $reqmsg = $reqmsg->fetchAll(PDO::FETCH_CLASS);
+        $reqmsg = objectToArray($reqmsg);
+        foreach ($reqmsg as $message) {
+            ?>
+            <div class="message">
+                <?php
+                    echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
+
+                    ?>
+            </div>
+
+        <?php
+        }
+        ?>
+        <script>
+            var div = document.getElementById('messages');
+            div.scrollTop = div.scrollHeight - div.clientHeight;
+        </script>
     </div>
     <div id="repondre">
         <input type="text" id="reponse" placeholder="Répondre...">

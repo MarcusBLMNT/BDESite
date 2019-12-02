@@ -29,7 +29,25 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
             break;
         case 'count':
             $requete = $bdd->prepare("SELECT categoriesujet.nom ,count(*) as nbSujet 
-            from categoriesujet join sujet on categoriesujet.id=sujet.id_categorie group by categoriesujet.nom " . $limit . $offset);
+            from categoriesujet join sujet on categoriesujet.id=sujet.id_categorie group by categoriesujet.nom ");
+            break;
+        case 'newComment':
+
+            $getIdUser = $bdd->prepare('SELECT id from utilisateur where pseudo = :pseudo');
+            $getIdUser->bindValue(':pseudo', $_POST['createur'], PDO::PARAM_STR);
+            $getIdUser->execute();
+            $getIdUser = $getIdUser->fetchAll(PDO::FETCH_CLASS);
+            $getIdUser = objectToArray($getIdUser);
+            $requete = $bdd->prepare("INSERT INTO `message` ( `corps`, `id_utilisateur`, `id_sujet`) VALUES (:corps, :idUser, :idSujet); ");
+            $requete->bindValue(':corps', $_POST['corps'], PDO::PARAM_STR);
+            $requete->bindValue(':idUser', $getIdUser[0]['id'], PDO::PARAM_INT);
+            $requete->bindValue(':idSujet', $_POST['sujet'], PDO::PARAM_INT);
+
+            break;
+        case 'getComment':
+            $requete = $bdd->prepare("SELECT message.date as datemsg, corps, utilisateur.pseudo
+            from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:idSujet order by datemsg ASC");
+            $requete->bindValue(':idSujet', $_POST['sujet'], PDO::PARAM_STR);
             break;
         default:
             $requete = '0';
