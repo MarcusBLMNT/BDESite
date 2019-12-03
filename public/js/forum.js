@@ -1,7 +1,8 @@
 //faire ça pour chaque catégorie
 var div = document.getElementById("resultatAjax");
 
-function init() {
+function init(idRole) {
+
     var rss = new XMLHttpRequest();
     rss.open('POST', 'js/para.php', true);
     rss.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -14,8 +15,8 @@ function init() {
                 categories.forEach(categorie => {
                     printTitreCategorie(categorie);
                     document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="sujets' + categorie['nom'] + '"></div>';
-                    setSujets(categorie['nom'], 0, 10);
-                    printBoutonsPage(categorie);
+                    setSujets(idRole, categorie['nom'], 0, 10);
+                    printBoutonsPage(idRole, categorie);
                 });
             }
             else {
@@ -26,7 +27,7 @@ function init() {
 
 }
 
-function setSujets(categorieAct, offset, limit) {
+function setSujets(idRole, categorieAct, offset, limit) {
     var rss2 = new XMLHttpRequest();
     rss2.open('POST', 'js/para.php', true);
     rss2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -39,11 +40,16 @@ function setSujets(categorieAct, offset, limit) {
                 var textInHtml = ' <form method="POST" action="../public/indexSujet.php"';
                 sujets.forEach(sujet => {
 
+                    if (sujet['prive'] == '1' && idRole == 0) {
 
-                    textInHtml += '<div id="sujet"><button id="boutonsujet" value="' + sujet['id'] + '" name=sujet>' + sujet['nom'] + '</button>';
+                        textInHtml += '<div id="sujet">Sujet privé!</div>';
+                    } else {
+                        textInHtml += '<div id="sujet"><button id="boutonsujet" value="' + sujet['id'] + '" name=sujet>' + sujet['nom'] + '</button>';
 
+                    }
                 });
                 textInHtml += '</form>';
+                console.log("categorie act =" + categorieAct);
                 document.getElementById('sujets' + categorieAct).innerHTML = textInHtml;
 
             }
@@ -71,13 +77,13 @@ function printTitreCategorie(categorie) {
     div.innerHTML += '<div id="partie' + categorie['nom'] + '" class="col-md-6 col-xs-3"><div class="titre">' + categorie['nom'];
 }
 
-function printBoutonsPage(categorie) {
+function printBoutonsPage(idRole, categorie) {
     var nombrepages = getNbPages(categorie);
     document.getElementById('partie' + categorie['nom']).innerHTML += '<div id="boutonsPage'
         + categorie['nom'] + '"></div>';
     for (var i = 1; i <= nombrepages; i++) {
         var offset = 10 * i - 10;
-        var temp = '<button onclick=setSujets("' + categorie['nom'] + '",' + offset + ',10)>' + i + '</div>';
+        var temp = '<button onclick=setSujets(' + idRole + ',"' + categorie['nom'] + '",' + offset + ',10)>' + i + '</div>';
         console.log(temp);
         document.getElementById('boutonsPage' + categorie['nom']).innerHTML += temp;
     }

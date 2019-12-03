@@ -63,22 +63,31 @@ from message join sujet on message.id_sujet=sujet.id join utilisateur on message
         </script>
     </div>
     <div id="repondre">
-        <input type="text" id="reponse" placeholder="Répondre...">
+        <?php
+        if (!empty($_SESSION)) {
+            ?>
+            <input type="text" id="reponse" placeholder="Répondre...">
 
-        <script>
-            function submit() {
-                var reponse = document.getElementById('reponse');
-                if (reponse.value != '') {
-                    addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_POST['sujet']) ?>);
-                    reponse.value = '';
+            <script>
+                function submit() {
+                    var reponse = document.getElementById('reponse');
+                    if (reponse.value != '') {
+                        addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_POST['sujet']) ?>);
+                        reponse.value = '';
+
+                    }
+
 
                 }
-
-
-            }
-        </script>
-        <button " onclick=" submit()">bouton</button>
-
+            </script>
+            <button onclick=" submit()">Envoyer</button>
+        <?php
+        } else {
+            ?>
+            Vous devez être connecté afin d'envoyer des messages...
+        <?php
+        }
+        ?>
     </div>
 </body>
 

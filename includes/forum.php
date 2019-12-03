@@ -13,8 +13,16 @@ $bdd = bddConnect();
 
 
 </head>
+<?php
+require '../includes/getStatut.php'
+?>
+<?php
+$statut = getStatut();
+?>
 
-<body onload=init()>
+<body onload=init(<?php
+                    echo ($statut);
+                    ?>)>
 
 
     <!-- pour chaque catégorie, créer une carte avec de quoi changer de page. pour chaque catégorie,
