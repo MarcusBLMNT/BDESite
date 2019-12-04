@@ -37,7 +37,7 @@ function setSujets(idRole, categorieAct, offset, limit) {
             if (rss2.response != '0') {
 
                 sujets = JSON.parse(rss2.response);
-                var textInHtml = ' <form method="POST" action="../public/indexSujet.php"';
+                var textInHtml = ' <form method="GET" action="../public/indexSujet.php"';
                 sujets.forEach(sujet => {
 
                     if (sujet['prive'] == '1' && idRole == 0) {
