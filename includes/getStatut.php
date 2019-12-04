@@ -13,7 +13,6 @@ function getStatut()
         $reponse->execute();
         $reponse = $reponse->fetchAll(PDO::FETCH_ASSOC);
         $reponse = objectToArray($reponse);
-        var_dump($reponse[0]['id_role']);
         return (int) $reponse[0]['id_role'];
     }
 }
