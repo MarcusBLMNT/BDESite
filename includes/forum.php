@@ -27,9 +27,10 @@ $statut = getStatut();
         <?php
         if ($statut > 0) {
             ?>
-            <a href="indexCreateSubject.php">créer sujet</a> <?php
-                                                                }
-                                                                ?> </div>
+            <a href="indexCreateSubject.php">créer sujet</a>
+        <?php
+        }
+        ?> </div>
     <div id="resultatAjax" class="row">
 
     </div>
