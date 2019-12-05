@@ -13,9 +13,15 @@ $requete = $requete->fetchAll(PDO::FETCH_CLASS);
 $requete = objectToArray($requete);
 
 if (isset($_POST) && !empty($_POST)) {
-
-    echo ("Sujet posté");
-    var_dump($_POST);
+    $requetePostSujet = $bdd->prepare("INSERT INTO `sujet` ( `nom`, `prive`, `id_categorie`, `id_utilisateur`) VALUES 
+    ( :nom, :prive,:idCategorie, :idUtilisateur);
+    ");
+    $requetePostSujet->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
+    $requetePostSujet->bindValue(':prive', $_POST['privé'], PDO::PARAM_STR);
+    $requetePostSujet->bindValue(':idCategorie', $_POST['categorie'], PDO::PARAM_STR);
+    $requetePostSujet->bindValue(':idUtilisateur', getIdUser(), PDO::PARAM_STR);
+    $requetePostSujet->execute();
+    echo ("Sujet posté =)");
 }
 ?>
 <!doctype html>
