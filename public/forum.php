@@ -21,17 +21,19 @@ include('../includes/header.php'); ?>
     <div class="col-md-10" style="margin-left:0">
 
         <?php
-        include('../includes/bddConnect.php');
-        $bdd = bddConnect();
-        $pseudo = $_SESSION['pseudo'];
-        $req = $bdd->prepare('call isbanned(:pseudo)');
-        $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
-        $req->execute();
-        if ($req->fetch() != NULL) {
+        if (isset($_SESSION['pseudo'])) {
+            include('../includes/bddConnect.php');
+            $bdd = bddConnect();
+            $pseudo = $_SESSION['pseudo'];
+            $req = $bdd->prepare('call isbanned(:pseudo)');
+            $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+            $req->execute();
+            if ($req->fetch() != NULL) {
 
-            echo '<form action="../includes/NewPost.php">
+                echo '<form action="../includes/NewPost.php">
             <input type="submit">
             </form>';
+            }
         }
         include('../includes/forum.php');
 
