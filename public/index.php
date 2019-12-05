@@ -21,9 +21,9 @@ include('../includes/header.php'); ?>
     <div class="col-10" style="margin-left:0">
 
 
+        <div id="resultatAjax"></div>
 
     </div>
-
 
 
 
