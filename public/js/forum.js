@@ -40,7 +40,7 @@ function setSujets(idRole, categorieAct, offset, limit) {
                 var textInHtml = ' <form method="GET" action="../public/indexSujet.php"';
                 sujets.forEach(sujet => {
 
-                    if (sujet['prive'] == '1' && idRole == 0) {
+                    if (sujet['prive'] == '1' && idRole < 2) {
 
                         textInHtml += '<div id="sujet">Sujet privé!</div>';
                     } else {

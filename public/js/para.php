@@ -49,6 +49,12 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
             from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:idSujet order by datemsg ASC");
             $requete->bindValue(':idSujet', $_POST['sujet'], PDO::PARAM_STR);
             break;
+        case 'signalerSujet':
+            $requete = $bdd->prepare("INSERT INTO `signalemessage` (`id_utilisateur`, `id_message`)
+                VALUES (:idUsr, :idMsg);");
+            $requete->bindValue(':idUsr', $_POST['idUsr'], PDO::PARAM_STR);
+            $requete->bindValue(':idMsg',  $_POST['idMessage'], PDO::PARAM_STR);
+            break;
         default:
             $requete = '0';
 

@@ -1,7 +1,6 @@
 <?php
 require 'bddconnect.php';
 require 'getStatut.php';
-
 $bdd = bddConnect();
 if (!isset($_GET['sujet'])) {
     $_GET['sujet'] = 0;
@@ -22,6 +21,9 @@ if (!empty($tab)) {
     header('Location:indexLogin.php');
     exit();
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,8 +52,8 @@ if (!empty($tab)) {
     </div>
     <div id="messages">
         <?php
-        $reqmsg = $bdd->prepare("SELECT message.date as datemsg, corps, utilisateur.pseudo
-from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:sujetId order by datemsg ASC");
+        $reqmsg = $bdd->prepare("SELECT message.id as id, message.date as datemsg, corps, utilisateur.pseudo
+        from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:sujetId order by datemsg ASC");
 
         $reqmsg->bindValue(':sujetId', $_GET['sujet'], PDO::PARAM_INT);
         $reqmsg->execute();
@@ -62,8 +64,8 @@ from message join sujet on message.id_sujet=sujet.id join utilisateur on message
             <div class="message">
                 <?php
                     echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
-
                     ?>
+                <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler</button>
             </div>
 
         <?php
@@ -76,19 +78,23 @@ from message join sujet on message.id_sujet=sujet.id join utilisateur on message
     </div>
     <div id="repondre">
         <?php
-        if (!empty($_SESSION)) {
+        if (!empty($_SESSION) && getStatut() > 0) {
+
             ?>
             <input type="text" id="reponse" placeholder="Répondre...">
 
             <script>
-                function submit() {
-                    var reponse = document.getElementById('reponse');
-                    if (reponse.value != '') {
-                        addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_GET['sujet']) ?>);
-                        reponse.value = '';
+                function signalerMessage(idMessage, idUsr) {
 
+                    var xml = new XMLHttpRequest();
+                    xml.open('POST', 'js/para.php', true);
+                    xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xml.send('requete=signalerSujet&idMessage=' + idMessage + '&idUsr=' + idUsr);
+                    xml.onreadystatechange = function() {
+                        if (xml.readyState == 4) {
+                            console.log("Message " + idMessage + " signalé par " + idUsr);
+                        }
                     }
-
 
                 }
             </script>
@@ -96,7 +102,7 @@ from message join sujet on message.id_sujet=sujet.id join utilisateur on message
         <?php
         } else {
             ?>
-            Vous devez être connecté afin d'envoyer des messages...
+            Vous devez être connecté ou non banni afin d'envoyer des messages...
         <?php
         }
         ?>

@@ -8,12 +8,16 @@ function getStatut()
 
         return 0;
     } else {
-        $reponse = $bdd->prepare('SELECT id_role from utilisateur where pseudo = :pseudo');
+        $reponse = $bdd->prepare('SELECT id_role, banni from utilisateur where pseudo = :pseudo');
         $reponse->bindValue(':pseudo', $_SESSION['pseudo'], PDO::PARAM_STR);
         $reponse->execute();
         $reponse = $reponse->fetchAll(PDO::FETCH_ASSOC);
         $reponse = objectToArray($reponse);
-        return (int) $reponse[0]['id_role'];
+        if ($reponse[0]['banni'] == 1) {
+            return 0;
+        } else {
+            return (int) $reponse[0]['id_role'];
+        }
     }
 }
 function getIdUser()
@@ -28,6 +32,6 @@ function getIdUser()
         $reponse->execute();
         $reponse = $reponse->fetchAll(PDO::FETCH_ASSOC);
         $reponse = objectToArray($reponse);
-        return (int) $reponse[0]['id'];
+        return $reponse[0]['id'];
     }
 }
