@@ -64,11 +64,16 @@ if (!empty($tab)) {
             <div class="message">
                 <?php
                     echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
+                    if (isset($_SESSION) && !empty($_SESSION)) {
+                        ?>
+                    <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler</button>
+                <?php
+                    }
                     ?>
-                <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler</button>
             </div>
 
         <?php
+
         }
         ?>
         <script>
