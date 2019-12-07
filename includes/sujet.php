@@ -100,6 +100,28 @@ if (!empty($tab)) {
                             console.log("Message " + idMessage + " signalé par " + idUsr);
                         }
                     }
+                    function submit() {
+                    var reponse = document.getElementById('reponse');
+                    if (reponse.value != '') {
+                        addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_POST['sujet']) ?>);
+                        reponse.value = '';
+
+                    }
+
+
+                }
+                </script>
+     
+
+            
+
+            <input type="text" id="reponse" placeholder="Répondre...">
+            <button onclick=" submit()">bouton</button>
+        <?php
+        } else {
+            echo ("Vous devez être connecté pour envoyer des messages");
+        }
+        ?>
 
                 }
             </script>
