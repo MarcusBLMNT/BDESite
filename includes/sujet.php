@@ -100,6 +100,7 @@ if (!empty($tab)) {
                             console.log("Message " + idMessage + " signalé par " + idUsr);
                         }
                     }
+                }
                     function submit() {
                     var reponse = document.getElementById('reponse');
                     if (reponse.value != '') {
