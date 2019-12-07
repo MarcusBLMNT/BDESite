@@ -52,7 +52,6 @@ if (!empty($tab)) {
             xml.send('requete=signalerSujet&idSujet=' + idSujet + '&idUsr=' + idUsr);
             xml.onreadystatechange = function() {
                 if (xml.readyState == 4) {
-                    console.log(xml.response);
                     console.log("Sujet " + idSujet + " signalé par " + idUsr);
                 }
             }
@@ -74,7 +73,6 @@ if (!empty($tab)) {
     }">
     <?php
     if (isset($_SESSION) && !empty($_SESSION)) {
-        echo ($_GET['sujet']);
         ?>
         <button onclick="signalerSujet(<?php echo ($_GET['sujet'] . ',' . getIdUser()); ?>)">signaler le sujet</button>
     <?php
