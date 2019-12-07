@@ -30,12 +30,56 @@ if (!empty($tab)) {
 
 <head>
     <link rel="stylesheet" href="../public/css/sujet.css">
+    <script>
+        function signalerMessage(idMessage, idUsr) {
+
+            var xml = new XMLHttpRequest();
+            xml.open('POST', 'js/para.php', true);
+            xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xml.send('requete=signalerMessage&idMessage=' + idMessage + '&idUsr=' + idUsr);
+            xml.onreadystatechange = function() {
+                if (xml.readyState == 4) {
+                    console.log("Message " + idMessage + " signalé par " + idUsr);
+                }
+            }
+        }
+
+        function signalerSujet(idSujet, idUsr) {
+
+            var xml = new XMLHttpRequest();
+            xml.open('POST', 'js/para.php', true);
+            xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xml.send('requete=signalerSujet&idSujet=' + idSujet + '&idUsr=' + idUsr);
+            xml.onreadystatechange = function() {
+                if (xml.readyState == 4) {
+                    console.log(xml.response);
+                    console.log("Sujet " + idSujet + " signalé par " + idUsr);
+                }
+            }
+        }
+
+        function submit() {
+            console.log("coucou")
+            var reponse = document.getElementById('reponse');
+            if (reponse.value != '') {
+                addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_GET['sujet']) ?>);
+                reponse.value = '';
+            }
+        }
+    </script>
 </head>
 
 <body onkeydown="if(event.keyCode==13){ 
     submit();    
     }">
-
+    <?php
+    if (isset($_SESSION) && !empty($_SESSION)) {
+        echo ($_GET['sujet']);
+        ?>
+        <button onclick="signalerSujet(<?php echo ($_GET['sujet'] . ',' . getIdUser()); ?>)">signaler le sujet</button>
+    <?php
+    }
+    ?>
 
 
     <div id=" HeaderSujet">
@@ -66,7 +110,7 @@ if (!empty($tab)) {
                     echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
                     if (isset($_SESSION) && !empty($_SESSION)) {
                         ?>
-                    <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler</button>
+                    <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler le message</button>
                 <?php
                     }
                     ?>
@@ -87,53 +131,14 @@ if (!empty($tab)) {
 
             ?>
             <input type="text" id="reponse" placeholder="Répondre...">
-
-            <script>
-                function signalerMessage(idMessage, idUsr) {
-
-                    var xml = new XMLHttpRequest();
-                    xml.open('POST', 'js/para.php', true);
-                    xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xml.send('requete=signalerSujet&idMessage=' + idMessage + '&idUsr=' + idUsr);
-                    xml.onreadystatechange = function() {
-                        if (xml.readyState == 4) {
-                            console.log("Message " + idMessage + " signalé par " + idUsr);
-                        }
-                    }
-                }
-                    function submit() {
-                    var reponse = document.getElementById('reponse');
-                    if (reponse.value != '') {
-                        addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_POST['sujet']) ?>);
-                        reponse.value = '';
-
-                    }
-
-
-                }
-                </script>
-     
-
-            
-
-            <input type="text" id="reponse" placeholder="Répondre...">
-            <button onclick=" submit()">bouton</button>
+            <button onclick="submit()">bouton</button>
         <?php
         } else {
             echo ("Vous devez être connecté pour envoyer des messages");
         }
+
         ?>
 
-                }
-            </script>
-            <button onclick=" submit()">Envoyer</button>
-        <?php
-        } else {
-            ?>
-            Vous devez être connecté ou non banni afin d'envoyer des messages...
-        <?php
-        }
-        ?>
     </div>
 </body>
 
