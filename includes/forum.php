@@ -37,8 +37,19 @@ $statut = getStatut();
             $reqMailsBde->execute();
             $reqMailsBde = $reqMailsBde->fetchAll(PDO::FETCH_CLASS);
             $reqMailsBde = objectToArray($reqMailsBde);
-            $mailsBDE = "";
+            $reqSujetsDepl = $bdd->prepare("SELECT nom from sujet join signalesujet on sujet.id=signalesujet.id_Sujet");
+            $reqSujetsDepl->execute();
+            $reqSujetsDepl = $reqSujetsDepl->fetchAll(PDO::FETCH_CLASS);
+            $reqSujetsDepl = objectToArray($reqSujetsDepl);
+            $sujetsDepl = "";
+            foreach ($reqSujetsDepl as $key => $sujet) {
+                $sujetsDepl = $sujetsDepl . '%0D%0A- ' . utf8_encode($sujet['nom']);
+            }
+            $sujetsDepl = str_replace("?", "%3F", $sujetsDepl, $count);
 
+
+
+            $mailsBDE = "";
             foreach ($reqMailsBde as  $key => $Mail) {
                 if ($key > 0) {
                     $mailsBDE = $mailsBDE . ',';
@@ -47,14 +58,10 @@ $statut = getStatut();
             }
 
 
-
-
-
-
             ?>
 
-            <a href="mailto:<?php echo ($mailsBDE); ?>?subject=Attention!%20Commentaires%20ou%20sujets%20déplacés%20sur%20le%20site%20du%20BDE
-            &body=Voici les différents sujets déplacés :%0D%0A - nomSujet %0D%0AVoici les différents messages déplacés %0D%0A- corpsMessage du sujet nomSujet%0D%0Aveuillez agir en conséquences svp Merci!">notifier membres du bde</a>
+            <a href='mailto:<?php echo ($mailsBDE); ?>?subject=Attention!%20Commentaires%20ou%20sujets%20déplacés%20sur%20le%20site%20du%20BDE
+            &body=Voici les différents sujets déplacés :<?php echo ($sujetsDepl) ?> %0D%0AVoici les différents messages déplacés %0D%0A- corpsMessage du sujet nomSujet%0D%0Aveuillez agir en conséquences svp Merci!'>notifier membres du bde</a>
         <?php
         }
         ?>
