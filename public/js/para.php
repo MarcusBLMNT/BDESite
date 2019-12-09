@@ -45,7 +45,7 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
 
             break;
         case 'getComment':
-            $requete = $bdd->prepare("SELECT message.date as datemsg, corps, utilisateur.pseudo
+            $requete = $bdd->prepare("SELECT message.id as id, message.date as datemsg, corps, utilisateur.pseudo
             from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:idSujet order by datemsg ASC");
             $requete->bindValue(':idSujet', $_POST['sujet'], PDO::PARAM_STR);
             break;
@@ -71,7 +71,7 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
         $requete->execute();
         $resultRequete = $requete->fetchAll(PDO::FETCH_CLASS);
         $truc = objectToArray($resultRequete);
-        $truc = jsonEncodeArray($truc);
+        $truc = json_encode($truc);
         echo ($truc);
     } else {
         echo $requete;

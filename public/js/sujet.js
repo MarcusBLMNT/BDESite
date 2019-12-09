@@ -1,5 +1,5 @@
-function addNewComment(corps, createur, sujet) {
-    console.log(corps + sujet + createur);
+function addNewComment(corps, createur, sujet, user) {
+
     var xml = new XMLHttpRequest();
     //ajouter un msg
     xml.open('POST', 'js/para.php', true);
@@ -25,6 +25,7 @@ function addNewComment(corps, createur, sujet) {
                         div.innerHTML = '';
                         messages.forEach(message => {
                             textInHTML += '<div class="message">' + message['datemsg'] + ' ' + message['corps'] + ' (' + message['pseudo'] + ')';
+                            textInHTML += ' <button onclick="signalerMessage(' + message['id'] + ',' + user + ')">signaler le message</button>'
                         });
                         div.innerHTML += textInHTML;
                         div.scrollTop = div.scrollHeight - div.clientHeight;

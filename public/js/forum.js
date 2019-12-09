@@ -35,7 +35,6 @@ function setSujets(idRole, categorieAct, offset, limit) {
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
             if (rss2.response != '0') {
-
                 sujets = JSON.parse(rss2.response);
                 var textInHtml = ' <form method="GET" action="../public/indexSujet.php"';
                 sujets.forEach(sujet => {

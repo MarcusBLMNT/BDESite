@@ -61,83 +61,86 @@ if (!empty($tab)) {
             console.log("coucou")
             var reponse = document.getElementById('reponse');
             if (reponse.value != '') {
-                addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", <?php echo ($_GET['sujet']) ?>);
+                addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", "<?php echo ($_GET['sujet']) ?>", "<?php echo (getIdUser($_SESSION['pseudo'])) ?>");
                 reponse.value = '';
             }
         }
     </script>
 </head>
 
-<body onkeydown="if(event.keyCode==13){ 
-    submit();    
-    }">
+<body>
+
     <?php
     if (isset($_SESSION) && !empty($_SESSION)) {
         ?>
-        <button onclick="signalerSujet(<?php echo ($_GET['sujet'] . ',' . getIdUser()); ?>)">signaler le sujet</button>
-    <?php
-    }
-    ?>
-
-
-    <div id=" HeaderSujet">
-        <div id="titreSujet">
-            <?php
-            echo ($tab[0]['nomSujet']);
-            ?>
-        </div>
-        <div id="pseudoCreateur">
-            <?php
-            echo ($tab[0]['pseudoCreateur']);
-            ?>
-        </div>
-    </div>
-    <div id="messages">
+        <div id="body2" onkeydown="if(event.keyCode==13){ 
+    submit();    
+    }">
+            <button onclick="signalerSujet(<?php echo ($_GET['sujet'] . ',' . getIdUser()); ?>)">signaler le sujet</button>
         <?php
-        $reqmsg = $bdd->prepare("SELECT message.id as id, message.date as datemsg, corps, utilisateur.pseudo
+        }
+        ?>
+
+
+        <div id=" HeaderSujet">
+            <div id="titreSujet">
+                <?php
+                echo ($tab[0]['nomSujet']);
+                ?>
+            </div>
+            <div id="pseudoCreateur">
+                <?php
+                echo ($tab[0]['pseudoCreateur']);
+                ?>
+            </div>
+        </div>
+        <div id="messages">
+            <?php
+            $reqmsg = $bdd->prepare("SELECT message.id as id, message.date as datemsg, corps, utilisateur.pseudo
         from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:sujetId order by datemsg ASC");
 
-        $reqmsg->bindValue(':sujetId', $_GET['sujet'], PDO::PARAM_INT);
-        $reqmsg->execute();
-        $reqmsg = $reqmsg->fetchAll(PDO::FETCH_CLASS);
-        $reqmsg = objectToArray($reqmsg);
-        foreach ($reqmsg as $message) {
-            ?>
-            <div class="message">
-                <?php
-                    echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
-                    if (isset($_SESSION) && !empty($_SESSION)) {
+            $reqmsg->bindValue(':sujetId', $_GET['sujet'], PDO::PARAM_INT);
+            $reqmsg->execute();
+            $reqmsg = $reqmsg->fetchAll(PDO::FETCH_CLASS);
+            $reqmsg = objectToArray($reqmsg);
+            foreach ($reqmsg as $message) {
+                ?>
+                <div class="message">
+                    <?php
+                        echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
+                        if (isset($_SESSION) && !empty($_SESSION)) {
+                            ?>
+                        <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler le message</button>
+                    <?php
+                        }
                         ?>
-                    <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler le message</button>
-                <?php
-                    }
-                    ?>
-            </div>
+                </div>
 
-        <?php
+            <?php
 
-        }
-        ?>
-        <script>
-            var div = document.getElementById('messages');
-            div.scrollTop = div.scrollHeight - div.clientHeight;
-        </script>
-    </div>
-    <div id="repondre">
-        <?php
-        if (!empty($_SESSION) && getStatut() > 0) {
+            }
+            ?>
+            <script>
+                var div = document.getElementById('messages');
+                div.scrollTop = div.scrollHeight - div.clientHeight;
+            </script>
+        </div>
+        <div id="repondre">
+            <?php
+            if (!empty($_SESSION) && getStatut() > 0) {
+
+                ?>
+                <input type="text" id="reponse" placeholder="Répondre...">
+                <button onclick="submit()">bouton</button>
+            <?php
+            } else {
+                echo ("Vous devez être connecté pour envoyer des messages");
+            }
 
             ?>
-            <input type="text" id="reponse" placeholder="Répondre...">
-            <button onclick="submit()">bouton</button>
-        <?php
-        } else {
-            echo ("Vous devez être connecté pour envoyer des messages");
-        }
 
-        ?>
-
-    </div>
+        </div>
+        </div>
 </body>
 
 <script type="text/javascript" src="../public/js/sujet.js"></script>
