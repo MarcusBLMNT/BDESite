@@ -71,7 +71,7 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
         $requete->execute();
         $resultRequete = $requete->fetchAll(PDO::FETCH_CLASS);
         $truc = objectToArray($resultRequete);
-        $truc = json_encode($truc);
+        $truc = jsonEncodeArray($truc);
         echo ($truc);
     } else {
         echo $requete;

@@ -58,7 +58,6 @@ if (!empty($tab)) {
         }
 
         function submit() {
-            console.log("coucou")
             var reponse = document.getElementById('reponse');
             if (reponse.value != '') {
                 addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", "<?php echo ($_GET['sujet']) ?>", "<?php echo (getIdUser($_SESSION['pseudo'])) ?>");
@@ -85,7 +84,7 @@ if (!empty($tab)) {
         <div id=" HeaderSujet">
             <div id="titreSujet">
                 <?php
-                echo ($tab[0]['nomSujet']);
+                echo (utf8_encode($tab[0]['nomSujet']));
                 ?>
             </div>
             <div id="pseudoCreateur">
@@ -107,7 +106,7 @@ if (!empty($tab)) {
                 ?>
                 <div class="message">
                     <?php
-                        echo ($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
+                        echo utf8_encode($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
                         if (isset($_SESSION) && !empty($_SESSION)) {
                             ?>
                         <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler le message</button>

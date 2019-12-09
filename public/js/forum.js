@@ -10,7 +10,6 @@ function init(idRole) {
     rss.onreadystatechange = function () {
         if (rss.readyState == 4) {
             if (rss.response != '0') {
-                console.log(rss.response);
                 categories = JSON.parse(rss.response);
                 categories.forEach(categorie => {
                     printTitreCategorie(categorie);
@@ -35,6 +34,7 @@ function setSujets(idRole, categorieAct, offset, limit) {
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
             if (rss2.response != '0') {
+                console.log(rss2.response);
                 sujets = JSON.parse(rss2.response);
                 var textInHtml = ' <form method="GET" action="../public/indexSujet.php"';
                 sujets.forEach(sujet => {
@@ -48,7 +48,6 @@ function setSujets(idRole, categorieAct, offset, limit) {
                     }
                 });
                 textInHtml += '</form>';
-                console.log("categorie act =" + categorieAct);
                 document.getElementById('sujets' + categorieAct).innerHTML = textInHtml;
 
             }
@@ -83,7 +82,6 @@ function printBoutonsPage(idRole, categorie) {
     for (var i = 1; i <= nombrepages; i++) {
         var offset = 10 * i - 10;
         var temp = '<button onclick=setSujets(' + idRole + ',"' + categorie['nom'] + '",' + offset + ',10)>' + i + '</div>';
-        console.log(temp);
         document.getElementById('boutonsPage' + categorie['nom']).innerHTML += temp;
     }
     div.innerHTML += '</div></div>';
