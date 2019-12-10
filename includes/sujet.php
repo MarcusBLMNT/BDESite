@@ -67,7 +67,7 @@ if (!empty($tab)) {
     </script>
 </head>
 
-<body>
+<body onload=refresh(<?php echo ($_GET['sujet']) ?>,<?php echo (getIdUser($_SESSION['pseudo'])) ?>)>
 
     <?php
     if (isset($_SESSION) && !empty($_SESSION)) {
@@ -94,31 +94,7 @@ if (!empty($tab)) {
             </div>
         </div>
         <div id="messages">
-            <?php
-            $reqmsg = $bdd->prepare("SELECT message.id as id, message.date as datemsg, corps, utilisateur.pseudo
-        from message join sujet on message.id_sujet=sujet.id join utilisateur on message.id_utilisateur=utilisateur.id where sujet.id=:sujetId order by datemsg ASC");
 
-            $reqmsg->bindValue(':sujetId', $_GET['sujet'], PDO::PARAM_INT);
-            $reqmsg->execute();
-            $reqmsg = $reqmsg->fetchAll(PDO::FETCH_CLASS);
-            $reqmsg = objectToArray($reqmsg);
-            foreach ($reqmsg as $message) {
-                ?>
-                <div class="message">
-                    <?php
-                        echo utf8_encode($message['datemsg'] . ' ' . $message['corps'] . ' (' . $message['pseudo'] . ')');
-                        if (isset($_SESSION) && !empty($_SESSION)) {
-                            ?>
-                        <button onclick="signalerMessage(<?php echo ($message['id'] . ',' . getIdUser()); ?>)">signaler le message</button>
-                    <?php
-                        }
-                        ?>
-                </div>
-
-            <?php
-
-            }
-            ?>
             <script>
                 var div = document.getElementById('messages');
                 div.scrollTop = div.scrollHeight - div.clientHeight;
