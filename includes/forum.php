@@ -28,6 +28,7 @@ $statut = getStatut();
         if ($statut > 0) {
             ?>
             <a href="indexCreateSubject.php">créer sujet</a>
+            <a href="indexCreateCategorie.php">créer Catégorie</a>
         <?php
         }
         ?>
