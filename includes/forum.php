@@ -27,8 +27,9 @@ $statut = getStatut();
         <?php
         if ($statut > 0) {
             ?>
-            <a href="indexCreateSubject.php">créer sujet</a>
-            <a href="indexCreateCategorie.php">créer Catégorie</a>
+            <a href="indexCreateSubject.php">Créer sujet</a>
+            <a href="indexCreateCategorie.php">Créer catégorie</a>
+            <a href="indexDeleteCategory.php">Supprimer une catégorie</a>
         <?php
         }
         ?>

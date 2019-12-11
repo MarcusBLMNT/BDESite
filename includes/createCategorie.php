@@ -12,7 +12,7 @@ $bdd = bddConnect();
 if (isset($_POST) && !empty($_POST)) {
     $requeteCreateCategorie = $bdd->prepare("INSERT INTO `categoriesujet` (`nom`) VALUES (:nomCategorie);");
 
-    $requeteCreateCategorie->bindValue(':nomCategorie', $_POST['nomCatégorie'], PDO::PARAM_STR);
+    $requeteCreateCategorie->bindValue(':nomCategorie', utf8_decode($_POST['nomCatégorie']), PDO::PARAM_STR);
     $requeteCreateCategorie->execute();
     echo ("<br>Catégorie '" . $_POST['nomCatégorie'] . "' créee  =)");
 }
@@ -30,7 +30,7 @@ if (isset($_POST) && !empty($_POST)) {
     créez votre nouvelle catégorie
     <form method="POST">
         <input type="text" name="nomCatégorie" placeholder="nomCatégorie" required="required" pattern="[^ ]*">
-
+        <button type="submit">créer</button>
     </form>
 </body>
 

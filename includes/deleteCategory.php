@@ -7,21 +7,18 @@ if (getStatut() == 0) {
     exit();
 }
 $bdd = bddConnect();
+$bdd = bddConnect();
 $requete = $bdd->prepare("SELECT * FROM `categoriesujet`");
 $requete->execute();
 $requete = $requete->fetchAll(PDO::FETCH_CLASS);
 $requete = objectToArray($requete);
 
 if (isset($_POST) && !empty($_POST)) {
-    $requetePostSujet = $bdd->prepare("INSERT INTO `sujet` ( `nom`, `prive`, `id_categorie`, `id_utilisateur`) VALUES 
-    ( :nom, :prive,:idCategorie, :idUtilisateur);
-    ");
-    $requetePostSujet->bindValue(':nom', utf8_decode($_POST['nom']), PDO::PARAM_STR);
-    $requetePostSujet->bindValue(':prive', $_POST['privé'], PDO::PARAM_STR);
-    $requetePostSujet->bindValue(':idCategorie', $_POST['categorie'], PDO::PARAM_STR);
-    $requetePostSujet->bindValue(':idUtilisateur', getIdUser(), PDO::PARAM_STR);
-    $requetePostSujet->execute();
-    echo ("Sujet posté =)");
+    $requeteDeleteCategory = $bdd->prepare("DELETE FROM categoriesujet where categoriesujet.id=:idCategorie ");
+
+    $requeteDeleteCategory->bindValue(':idCategorie', $_POST['categorie'], PDO::PARAM_STR);
+    $requeteDeleteCategory->execute();
+    echo ("<br>Catégorie supprimée =)");
 }
 ?>
 <!doctype html>
@@ -34,8 +31,8 @@ if (isset($_POST) && !empty($_POST)) {
 </head>
 
 <body>
+    Supprimes une catégorie
     <form method="POST">
-        <input type="text" name="nom" placeholder="nom" required="required">
         <select name="categorie">
             <?php
             foreach ($requete as $categorie) { ?>
@@ -49,14 +46,7 @@ if (isset($_POST) && !empty($_POST)) {
 
             ?>
         </select>
-
-
-
-        <select name="privé">
-            <option value="0">non</option>
-            <option value="1">oui</option>
-        </select><br>
-        <button type="submit">créer</button>
+        <button type="submit">Supprimer</button>
 
     </form>
 </body>

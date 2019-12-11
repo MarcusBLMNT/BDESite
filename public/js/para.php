@@ -24,7 +24,7 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
 
             $requete = $bdd->prepare("SELECT sujet.*,categoriesujet.nom as categorie
             FROM `sujet` join categoriesujet on sujet.id_categorie=categoriesujet.id where categoriesujet.nom='"
-                . $_POST['categorie'] . "' " . $limit . " " . $offset);
+                . utf8_decode($_POST['categorie']) . "' " . $limit . " " . $offset);
 
             break;
         case 'count':
@@ -39,7 +39,7 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
             $getIdUser = $getIdUser->fetchAll(PDO::FETCH_CLASS);
             $getIdUser = objectToArray($getIdUser);
             $requete = $bdd->prepare("INSERT INTO `message` ( `corps`, `id_utilisateur`, `id_sujet`) VALUES (:corps, :idUser, :idSujet); ");
-            $requete->bindValue(':corps', $_POST['corps'], PDO::PARAM_STR);
+            $requete->bindValue(':corps', utf8_decode($_POST['corps']), PDO::PARAM_STR);
             $requete->bindValue(':idUser', $getIdUser[0]['id'], PDO::PARAM_INT);
             $requete->bindValue(':idSujet', $_POST['sujet'], PDO::PARAM_INT);
 
