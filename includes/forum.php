@@ -30,6 +30,7 @@ $statut = getStatut();
             <a href="indexCreateSubject.php">Créer sujet</a>
             <a href="indexCreateCategorie.php">Créer catégorie</a>
             <a href="indexDeleteCategory.php">Supprimer une catégorie</a>
+            <a href="indexUpdateCategory.php">Modifier une catégorie</a>
         <?php
         }
         ?>
