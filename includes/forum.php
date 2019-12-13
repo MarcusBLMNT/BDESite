@@ -31,6 +31,9 @@ $statut = getStatut();
             <a href="indexCreateCategorie.php">Créer catégorie</a>
             <a href="indexDeleteCategory.php">Supprimer une catégorie</a>
             <a href="indexUpdateCategory.php">Modifier une catégorie</a>
+            <a href="indexDeleteSujet.php">Supprimer un sujet</a>
+            <a href="indexUpdateSujet.php">Editer un sujet</a>
+            <a href="indexBannir.php">Bannir un étudiant</a>
         <?php
         }
         ?>
