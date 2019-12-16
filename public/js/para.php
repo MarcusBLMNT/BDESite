@@ -22,9 +22,10 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
 
         case 'sujets':
 
-            $requete = $bdd->prepare("SELECT sujet.*,categoriesujet.nom as categorie
-            FROM `sujet` join categoriesujet on sujet.id_categorie=categoriesujet.id where categoriesujet.nom='"
-                . utf8_decode($_POST['categorie']) . "' " . $limit . " " . $offset);
+            $requete = $bdd->prepare("SELECT sujet.id as idSousRequete, sujet.*, count(corps) as nbmessages, categoriesujet.nom as categorie ,
+            (select message.date from message join sujet on message.id_sujet=sujet.id where sujet.id=idSousRequete order by message.date desc limit 1) as dateDernierMessage
+            FROM `sujet` left join message on sujet.id=message.id_sujet join categoriesujet on sujet.id_categorie=categoriesujet.id where categoriesujet.nom='"
+                . utf8_decode($_POST['categorie']) . "'  group by sujet.id " . $limit . " " . $offset);
 
             break;
         case 'count':
