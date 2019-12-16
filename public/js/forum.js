@@ -41,9 +41,10 @@ function setSujets(idRole, categorieAct, offset, limit) {
 
                     if (sujet['prive'] == '1' && idRole < 2) {
 
-                        textInHtml += '<div id="sujet">Sujet privé!</div>';
+                        textInHtml += '<tr>Sujet privé!</tr>';
                     } else {
-                        textInHtml += '<div id="sujet"><button id="boutonsujet" value="' + sujet['id'] + '" name=sujet>' + sujet['nom'] + '</button>';
+                        textInHtml += '<tr><td><button id="boutonsujet" value="' + sujet['id'] + '" name=sujet>' + sujet['nom'] + '</button></td><td>|'
+                            + sujet['auteur'] + '</td><td>|' + sujet['date'] + '</td><td>|' + sujet['nbmessages'] + '</td><td>|' + sujet['auteurDernierMessage'] + '</td><td>|' + sujet['dateDernierMessage'] + '</td></tr>';
 
                     }
                 });
