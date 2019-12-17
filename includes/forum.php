@@ -1,5 +1,5 @@
 <?php
-include('bddconnect.php');
+require 'bddconnect.php';
 $bdd = bddConnect();
 
 
