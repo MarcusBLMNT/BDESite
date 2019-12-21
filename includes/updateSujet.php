@@ -32,7 +32,7 @@ if (isset($_POST) && !empty($_POST)) {
 </head>
 
 <body>
-    Modifie une catégorie
+    Modifie un sujet
     <form method="POST">
         <select name="sujet">
             <?php

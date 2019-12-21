@@ -7,7 +7,6 @@ if (getStatut() < 2) {
     exit();
 }
 $bdd = bddConnect();
-$bdd = bddConnect();
 $requete = $bdd->prepare("SELECT * FROM `categoriesujet`");
 $requete->execute();
 $requete = $requete->fetchAll(PDO::FETCH_CLASS);

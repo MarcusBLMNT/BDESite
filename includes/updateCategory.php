@@ -17,7 +17,7 @@ if (isset($_POST) && !empty($_POST)) {
     $requeteDeleteCategory = $bdd->prepare("UPDATE `categoriesujet` SET `nom` = :nomCategorie  WHERE `categoriesujet`.`id` = :idCategorie;");
 
     $requeteDeleteCategory->bindValue(':idCategorie', $_POST['categorie'], PDO::PARAM_STR);
-    $requeteDeleteCategory->bindValue(':nomCategorie', $_POST['nomCategorie'], PDO::PARAM_STR);
+    $requeteDeleteCategory->bindValue(':nomCategorie', utf8_decode($_POST['nomCategorie']), PDO::PARAM_STR);
     $requeteDeleteCategory->execute();
     echo ("<br>Catégorie Modifiée =)");
 }
@@ -32,7 +32,7 @@ if (isset($_POST) && !empty($_POST)) {
 </head>
 
 <body>
-    Supprimes une catégorie
+    Modifies une catégorie
     <form method="POST">
         <select name="categorie">
             <?php

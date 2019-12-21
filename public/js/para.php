@@ -28,10 +28,21 @@ if (isset($_POST['requete']) && !empty($_POST['requete'])) {
             FROM `sujet` join utilisateur on sujet.id_utilisateur=utilisateur.id  left join message on sujet.id=message.id_sujet join categoriesujet on sujet.id_categorie=categoriesujet.id where categoriesujet.nom='"
                 . utf8_decode($_POST['categorie']) . "'  group by sujet.id " . $limit . " " . $offset);
 
+
+
+
             break;
         case 'count':
-            $requete = $bdd->prepare("SELECT categoriesujet.nom ,count(*) as nbSujet 
-            from categoriesujet join sujet on categoriesujet.id=sujet.id_categorie group by categoriesujet.nom ");
+
+            if ($_POST['filtre'] != 'NULL') {
+                $requete = $bdd->prepare("SELECT categoriesujet.nom ,count(*) as nbSujet 
+                from categoriesujet join sujet on categoriesujet.id=sujet.id_categorie where categoriesujet.id = :filtre group by categoriesujet.nom");
+                $requete->bindValue(':filtre', $_POST['filtre'], PDO::PARAM_STR);
+            } else {
+                $requete = $bdd->prepare("SELECT categoriesujet.nom ,count(*) as nbSujet 
+                from categoriesujet join sujet on categoriesujet.id=sujet.id_categorie group by categoriesujet.nom ");
+            }
+
             break;
         case 'newComment':
 

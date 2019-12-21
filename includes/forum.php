@@ -18,18 +18,17 @@ require '../includes/getStatut.php'
 ?>
 <?php
 $statut = getStatut();
+if (isset($_POST['filtre']) && !empty($_POST['filtre'])) {
+    $post = $_POST['filtre'];
+} else {
+    $post = 'NULL';
+}
 ?>
 
-<body onload="init(<?php
-                    echo ($statut);
-                    ?>)">
+<body onload=init(<?php
+                    echo ($statut . ',"' . $post . '"');
+                    ?>)>
     <div id="boutonsAdmins">
-
-
-
-
-
-
 
         <?php
                     if ($statut > 0) {
@@ -98,6 +97,31 @@ $statut = getStatut();
         <?php
                                                                                                                                             }
         ?>
+    </div>
+    <?php
+                                                                                                                                            $requete = $bdd->prepare("SELECT * FROM `categoriesujet`");
+                                                                                                                                            $requete->execute();
+                                                                                                                                            $requete = $requete->fetchAll(PDO::FETCH_CLASS);
+                                                                                                                                            $requete = objectToArray($requete);
+    ?>
+    <div id="filtre">
+        <form method="POST">
+            <select name="filtre">
+                <?php
+                                                                                                                                            foreach ($requete as $categorie) { ?>
+                    <option value="<?php echo ($categorie['id']); ?>">
+                        <?php
+                                                                                                                                                echo (utf8_encode($categorie['nom']));
+                        ?>
+                    </option>
+
+                <?php
+                                                                                                                                            }
+
+                ?>
+                <option value="NULL">Aucun filtre</option>
+            </select>
+            <button type="submit">filtrer</button>
     </div>
     <div id="resultatAjax" class="row">
 

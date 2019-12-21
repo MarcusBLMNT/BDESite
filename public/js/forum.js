@@ -1,12 +1,12 @@
 //faire ça pour chaque catégorie
 var div = document.getElementById("resultatAjax");
 
-function init(idRole) {
+function init(idRole, filtre) {
 
     var rss = new XMLHttpRequest();
     rss.open('POST', 'js/para.php', true);
     rss.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    rss.send("requete=count");
+    rss.send("requete=count&filtre=" + filtre);
     rss.onreadystatechange = function () {
         if (rss.readyState == 4) {
             if (rss.response != '0') {
@@ -30,7 +30,7 @@ function setSujets(idRole, categorieAct, offset, limit) {
     var rss2 = new XMLHttpRequest();
     rss2.open('POST', 'js/para.php', true);
     rss2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    rss2.send('requete=sujets&offset=' + offset + '&limit=' + limit + "&categorie=" + categorieAct);
+    rss2.send('requete=sujets&offset=' + offset + '&limit=' + limit + '&categorie=' + categorieAct);
     rss2.onreadystatechange = function () {
         if (rss2.readyState == 4) {
             if (rss2.response != '0') {
