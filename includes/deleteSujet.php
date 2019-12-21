@@ -31,18 +31,18 @@ if (isset($_POST) && !empty($_POST)) {
 </head>
 
 <body>
-    Supprimes une catégorie
+    Supprimes un sujet
     <form method="POST">
         <select name="sujet">
             <?php
             foreach ($requete as $sujet) { ?>
                 <option value="<?php echo ($sujet['id']); ?>">
                     <?php
-                        echo (utf8_encode($sujet['nom']));
-                        ?>
+                                echo (utf8_encode($sujet['nom']));
+                    ?>
                 </option>
             <?php
-            }
+                            }
 
             ?>
         </select>
