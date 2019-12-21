@@ -59,10 +59,17 @@ if (!empty($tab)) {
 
         function submit() {
             var reponse = document.getElementById('reponse');
-            if (reponse.value != '') {
-                addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", "<?php echo ($_GET['sujet']) ?>", "<?php echo (getIdUser($_SESSION['pseudo'])) ?>");
-                reponse.value = '';
-            }
+            <?php
+            if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])) {
+            ?>
+                if (reponse.value != '') {
+                    console.log($_SESSION['pseudo']);
+                    addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", "<?php echo ($_GET['sujet']) ?>", "<?php echo (getIdUser($_SESSION['pseudo'])) ?>");
+                    reponse.value = '';
+                }
+            <?php
+                                                                                                                        }
+            ?>
         }
     </script>
 </head>
