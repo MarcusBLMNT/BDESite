@@ -29,7 +29,7 @@ if (isset($_POST) && !empty($_POST)) {
 <body>
     créez votre nouvelle catégorie
     <form method="POST">
-        <input type="text" name="nomCatégorie" placeholder="nomCatégorie" required="required">
+        <input type="text" name="nomCatégorie" placeholder="nomCatégorie" required="required" pattern="*[^ ]*">
         <button type="submit">créer</button>
     </form>
 </body>
