@@ -67,7 +67,10 @@ if (!empty($tab)) {
     </script>
 </head>
 
-<body onload=refresh(<?php echo ($_GET['sujet']) ?>,<?php echo (getIdUser($_SESSION['pseudo'])) ?>)>
+<body onload=refresh(<?php echo ($_GET['sujet']);
+                                                                                                                        if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])) {
+                                                                                                                            echo (',' . getIdUser($_SESSION['pseudo']));
+                                                                                                                        }  ?>)>
 
     <?php
                                                                                                                         if (isset($_SESSION) && !empty($_SESSION)) {

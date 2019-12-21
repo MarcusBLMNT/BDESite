@@ -12,7 +12,6 @@ $requete = $bdd->prepare("SELECT id, nom FROM `sujet`");
 $requete->execute();
 $requete = $requete->fetchAll(PDO::FETCH_CLASS);
 $requete = objectToArray($requete);
-
 if (isset($_POST) && !empty($_POST)) {
     $requeteDeleteSujet = $bdd->prepare("DELETE FROM sujet where sujet.id=:idSujet ");
 
