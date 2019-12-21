@@ -2,7 +2,7 @@
 require 'bddconnect.php';
 require 'getStatut.php';
 
-if (getStatut() == 0) {
+if (getStatut() < 2) {
     header('Location:indexLogin.php');
     exit();
 }
@@ -29,7 +29,7 @@ if (isset($_POST) && !empty($_POST)) {
 <body>
     créez votre nouvelle catégorie
     <form method="POST">
-        <input type="text" name="nomCatégorie" placeholder="nomCatégorie" required="required" pattern="[^ ]*">
+        <input type="text" name="nomCatégorie" placeholder="nomCatégorie" required="required">
         <button type="submit">créer</button>
     </form>
 </body>

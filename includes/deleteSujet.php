@@ -2,7 +2,7 @@
 require 'bddconnect.php';
 require 'getStatut.php';
 
-if (getStatut() == 0) {
+if (getStatut() < 2) {
     header('Location:indexLogin.php');
     exit();
 }

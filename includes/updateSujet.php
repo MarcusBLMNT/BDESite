@@ -2,7 +2,7 @@
 require 'bddconnect.php';
 require 'getStatut.php';
 
-if (getStatut() == 0) {
+if (getStatut() < 2) {
     header('Location:indexLogin.php');
     exit();
 }
@@ -39,11 +39,11 @@ if (isset($_POST) && !empty($_POST)) {
             foreach ($requete as $sujet) { ?>
                 <option value="<?php echo ($sujet['id']); ?>">
                     <?php
-                        echo (utf8_encode($sujet['nom']));
-                        ?>
+                                echo (utf8_encode($sujet['nom']));
+                    ?>
                 </option>
             <?php
-            }
+                            }
 
             ?>
         </select>
