@@ -2,7 +2,7 @@
 include('bddconnect.php');
 include('../public/api/jsonUnicode.php');
 $bdd = bddconnect();
-
+var_dump($_POST);
 if (isset($_POST['inscription'])) {
     //récupération des données inscrites par l'utilisateur
     $nom = htmlentities(trim($_POST['Nom']));
@@ -12,8 +12,6 @@ if (isset($_POST['inscription'])) {
     $localisation = htmlentities(trim($_POST['localisation']));
     $mdp = htmlentities(trim($_POST['Mdp']));
     $mdp2 = htmlentities(trim($_POST['Mdp2']));
-    $password = $_POST['password'];
-
 
 
 
@@ -28,13 +26,15 @@ if (isset($_POST['inscription'])) {
                 $testEmail->execute();
                 $TabTestEmail = $testEmail->fetchAll(PDO::FETCH_CLASS);
                 $TabTestEmail = objectToArray($TabTestEmail);
-                if (empty($TabTest)) {
-                    $testEmail2 = $bdd->prepare("call add_user (:pseudo,:mdp,:email,2,:localisation,:nom,:prenom)");
+                if (empty($TabTestEmail)) {
+                    //      var_dump($TabTestEmail);
+                    $testEmail2 = $bdd->prepare(" INSERT INTO utilisateur(pseudo, mot_de_passe, email, prenom, nom, id_role, id_localisation_centre)
+                    VALUES (:pseudo, :mdp, :email, :prenom, :nom, '1', :localisation) ");
                     //    changer la procedure add_user 
                     $testEmail2->bindValue(':pseudo',  $pseudo, PDO::PARAM_STR);
                     $testEmail2->bindValue(':mdp',  $mdp, PDO::PARAM_STR);
                     $testEmail2->bindValue(':email',  $email, PDO::PARAM_STR);
-                    $testEmail2->bindValue(':localisation',  $localisation, PDO::PARAM_INT);
+                    $testEmail2->bindValue(':localisation',  $localisation, PDO::PARAM_STR);
                     $testEmail2->bindValue(':nom',  $nom, PDO::PARAM_STR);
                     $testEmail2->bindValue(':prenom',  $prenom, PDO::PARAM_STR);
                     $testEmail2->execute();

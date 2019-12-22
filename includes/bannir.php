@@ -31,11 +31,7 @@ if (isset($_POST) && !empty($_POST)) {
 <!doctype html>
 <html lang="fr">
 
-<head>
-    <meta charset="utf-8">
-    <title>Titre de la page</title>
 
-</head>
 
 <body>
     Bannis des utilisateurs pas polis! mEmME sy Sé pA tRAi JaNTY!!!!!!!!!!
@@ -46,11 +42,11 @@ if (isset($_POST) && !empty($_POST)) {
                 <option value="<?php echo ($utilisateur['id']); ?>">
                     <?php
 
-                        echo (utf8_encode($utilisateur['pseudo']));
-                        if ($utilisateur['banni'] == 1) {
-                            echo (" (banni)");
-                        }
-                        ?>
+                    echo (utf8_encode($utilisateur['pseudo']));
+                    if ($utilisateur['banni'] == 1) {
+                        echo (" (banni)");
+                    }
+                    ?>
                 </option>
             <?php
             }

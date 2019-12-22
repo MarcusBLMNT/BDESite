@@ -61,45 +61,45 @@ if (!empty($tab)) {
             var reponse = document.getElementById('reponse');
             <?php
             if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])) {
+
             ?>
                 if (reponse.value != '') {
-                    console.log($_SESSION['pseudo']);
                     addNewComment(reponse.value, "<?php echo ($_SESSION['pseudo']) ?>", "<?php echo ($_GET['sujet']) ?>", "<?php echo (getIdUser($_SESSION['pseudo'])) ?>");
                     reponse.value = '';
                 }
             <?php
-                                                                                                                        }
+            }
             ?>
         }
     </script>
 </head>
 
 <body onload=refresh(<?php echo ($_GET['sujet']);
-                                                                                                                        if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])) {
-                                                                                                                            echo (',' . getIdUser($_SESSION['pseudo']));
-                                                                                                                        }  ?>)>
+                        if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo'])) {
+                            echo (',' . getIdUser($_SESSION['pseudo']));
+                        }  ?>)>
 
     <?php
-                                                                                                                        if (isset($_SESSION) && !empty($_SESSION)) {
+    if (isset($_SESSION) && !empty($_SESSION)) {
     ?>
         <div id="body2" onkeydown="if(event.keyCode==13){ 
     submit();    
     }">
             <button onclick="signalerSujet(<?php echo ($_GET['sujet'] . ',' . getIdUser()); ?>)">signaler le sujet</button>
         <?php
-                                                                                                                        }
+    }
         ?>
 
 
         <div id=" HeaderSujet">
             <div id="titreSujet">
                 <?php
-                                                                                                                        echo (utf8_encode($tab[0]['nomSujet']));
+                echo (utf8_encode($tab[0]['nomSujet']));
                 ?>
             </div>
             <div id="pseudoCreateur">
                 <?php
-                                                                                                                        echo ($tab[0]['pseudoCreateur']);
+                echo ($tab[0]['pseudoCreateur']);
                 ?>
             </div>
         </div>
@@ -112,15 +112,15 @@ if (!empty($tab)) {
         </div>
         <div id="repondre">
             <?php
-                                                                                                                        if (!empty($_SESSION) && getStatut() > 0) {
+            if (!empty($_SESSION) && getStatut() > 0) {
 
             ?>
                 <input type="text" id="reponse" placeholder="Répondre...">
                 <button onclick="submit()">bouton</button>
             <?php
-                                                                                                                        } else {
-                                                                                                                            echo ("Vous devez être connecté pour envoyer des messages");
-                                                                                                                        }
+            } else {
+                echo ("Vous devez être connecté pour envoyer des messages");
+            }
 
             ?>
 
