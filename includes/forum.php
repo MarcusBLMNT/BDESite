@@ -53,7 +53,7 @@ if (isset($_POST['filtre']) && !empty($_POST['filtre'])) {
             $reqSujetsDepl->execute();
             $reqSujetsDepl = $reqSujetsDepl->fetchAll(PDO::FETCH_CLASS);
             $reqSujetsDepl = objectToArray($reqSujetsDepl);
-            $reqMessDepl = $bdd->prepare('SELECT message.corps, sujet.nom from signalemessage join message on signalemessage.id_message=message.id
+            $reqMessDepl = $bdd->prepare('SELECT DISTINCT message.corps, sujet.nom from signalemessage join message on signalemessage.id_message=message.id
              join sujet on message.id_sujet=sujet.id order by sujet.nom asc');
             $reqMessDepl->execute();
             $reqMessDepl = $reqMessDepl->fetchAll(PDO::FETCH_CLASS);
