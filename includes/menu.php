@@ -23,6 +23,7 @@
 
             <li><a href="../public/asso.php"><i class="fas fa-user-friends"></i>Associations</a></li>
             <li><a href="../public/equipe.php"><i class="fas fa-users"></i>Notre équipe</a></li>
+            <li><a href="../public/forum.php"><i class="fas fa-users"></i>Forum</a></li>
 
 
         </ul>

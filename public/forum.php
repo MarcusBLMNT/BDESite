@@ -1,36 +1,32 @@
-<!doctype html>
-<html lang="fr">
-
-
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-</head>
 <?php
-include('../includes/header.php'); ?>
-
-<div class="row">
-
-    <div class="col-md-2" style="margin-left:0">
-        <?php
-        include('../includes/menu.php');
-        ?>
-    </div>
-    <div class="col-md-10" style="margin-left:0">
-        <?php
-        include('../includes/forum.html');
-
-        ?>
-
-
-    </div>
-</div>
-
-
-<?php
-include('../includes/footer.html');
+include('../includes/bddConnect.php');
+$bdd = bddConnect();
+$categories = $bdd->query('SELECT * FROM categorie_post ORDER BY nom');
 ?>
-
-
-</html>
+<table class="forum">
+   <tr class="header">
+      <th class="main">Sujets</th>
+      <th class="sub-info">Auteur</th>
+      <th class="sub-info">Date de création</th>
+      <th class="sub-info">Réponses</th>
+      <th class="sub-info">Dernier message</th>
+      <th class="sub-info">Auteur</th>
+      <th class="sub-info">Date de réponses</th>
+      
+   </tr>
+   <?php
+   while($c = $categories->fetch()) {
+   ?>
+   <tr>
+      <td class="main">
+         <h4><a href=""><?= $c['nom'] ?></a></h4>
+      </td>
+      <td class="sub-info">Michel</td>
+      <td class="sub-info">04.12.2015 à 14h52</td>
+      <td class="sub-info">4083495</td>
+      <td class="sub-info">4083495</td>
+      <td class="sub-info">4083495</td>
+      <td class="sub-info">4083495</td>
+   </tr>
+   <?php } ?>
+</table>
