@@ -35,12 +35,11 @@ if (isset($_POST) && !empty($_POST)) {
 
 <body>
     <h2>Ajout d'un nouveau sujet</h2>
-    <div class="test">
     <form method="POST">
         <table>
         <tr>
          <td>Sujet</td>
-         <td><input type="text" name="nom" placeholder="nom" required="required" size="50"></td>
+         <td><input type="text" name="nom" placeholder="Nom du sujet" required="required" size="50"></td>
       </tr>
       <tr>
          <td>Catégorie</td>
@@ -66,10 +65,10 @@ if (isset($_POST) && !empty($_POST)) {
         </select></td>
       </tr>
   </table>
+  <div class="ajout">
         <button type="submit">créer</button>
-
-    </form>
 </div>
+    </form>
 </body>
 
 </html>

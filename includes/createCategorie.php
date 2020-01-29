@@ -23,13 +23,17 @@ if (isset($_POST) && !empty($_POST)) {
 <head>
     <meta charset="utf-8">
     <title>Titre de la page</title>
-
+    <link rel="stylesheet" href="../public/css/createCategorie.css">
 </head>
 
 <body>
-    créez votre nouvelle catégorie
+    <h2>Ajout d'une nouvelle catégorie</h2>
     <form method="POST">
-        <input type="text" name="nomCatégorie" placeholder="nomCatégorie" required="required">
+        <table>
+        <tr>
+         <td><input type="text" name="nomCatégorie" placeholder="Nom de votre catégorie" required="required"></td>
+      </tr>
+  </table>
         <button type="submit">créer</button>
     </form>
 </body>
