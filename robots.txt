@@ -2,14 +2,23 @@
 
 User-agents: *
 Disallow: includes/
-Allow: includes/boutique.php
 Disallow: public/api/
 Disallow: public/assets/
 Disallow: public/css/
 Disallow: public/images/
+Disallow: public/js/
 Disallow: public/api.rar
+Disallow: public/article1.php
+Disallow: public/error.php
+Disallow: public/essai2.php
+Disallow: public/evnt.php
 Disallow: public/index.php
 Disallow: public/indexAddEvent.php
+Disallow: public/indexBoutique.php
 Disallow: public/indexInscription.php
 Disallow: public/indexLogin.php
 Disallow: public/indexPanier.php
+Disallow: public/indexSouvenirs.php
+Disallow: public/indexSupprEvent.php
+Disallow: public/login.php
+Disallow: public/script.php

@@ -1,7 +1,10 @@
 <?php
 include('../includes/bddConnect.php');
+include('')
 $bdd = bddConnect();
-/* Traitement du formulaire de création de Topic */
+$get_categorie = htmlspecialchars($_GET['categorie']);
+$categorie = $bdd->prepare('SELECT * FROM categorie_post WHERE id = ? ORDER BY nom');
+$categorie->execute(array($get_categorie));
 if(isset($_SESSION['id'])) {
    if(isset($_POST['tsubmit'])) {
       if(isset($_POST['tsujet'],$_POST['tcontenu'])) {
@@ -41,11 +44,10 @@ if(isset($_SESSION['id'])) {
       <tr>
          <td>Catégorie</td>
          <td>
-            <select>
-               <option>Catégorie 1</option>
-               <option>Catégorie 2</option>
-               <option>Catégorie 3</option>
-               <option>Catégorie 1</option>
+            <select name="categorie">
+               <?php while($c = $categorie->fetch()) { ?>
+               <option><?= $c['nom'] ?></option>
+               <?php } ?>
             </select>
          </td>
       </tr>

@@ -1,13 +1,14 @@
 <?php
-
+//script supprimant un évenènement
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
 $bdd = bddConnect();
 if (!empty($_SESSION["pseudo"])) {
 
     $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
-join role on utilisateur.id_Role=role.id where utilisateur.pseudo=\"" . $_SESSION["pseudo"] . "\"
+join role on utilisateur.id_Role=role.id where utilisateur.pseudo=:pseudo
 ");
+    $requeteAdmin->bindValue(':pseudo', $_SESSION["pseudo"], PDO::PARAM_STR);
     $requeteAdmin->execute();
     $idAdmin = $requeteAdmin->fetchAll(PDO::FETCH_CLASS);
     $idAdmin = objectToArray($idAdmin);
@@ -41,7 +42,7 @@ if (isset($_POST['nom']) && !empty($_POST['nom'])) {
 
 
         $requeteDelEvent2 = $bdd->prepare(
-            "DELETE FROM evenement WHERE nom =:nom"
+            "DELETE FROM evenement WHERE nom =:nom "
         );
         $requeteDelEvent2->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
         if ($requeteDelEvent2->execute()) {

@@ -11,5 +11,3 @@ $requete->execute();
 $resultat=$requete->fetchall(PDO::FETCH_ASSOC);
  
 echo jsonEncodeArray($resultat);
-
-?>

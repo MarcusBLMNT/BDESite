@@ -1,4 +1,5 @@
 <?php
+//script permettant d'ajouter des articles dans la base de données
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 } catch (Exception $e) {
@@ -36,6 +37,8 @@ if (isset($_POST['Ajouter'])) {
         //include('../includes/menu.php');
         ?>
     </header>
+
+    <!-- Formulaire pour ajouter un article-->
     <div class="inscrip">
 
 

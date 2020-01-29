@@ -2,6 +2,7 @@
 
 include('../includes/bddConnect.php');
 include('../public/api/jsonUnicode.php');
+include('../script/scriptRecurrenceEvt.php');
 
 
 
@@ -11,11 +12,12 @@ include('../public/api/jsonUnicode.php');
 <!doctype html>
 
 <html lang="fr">
+<!-- page gérant l'affichage des évènements avec récupération dans la bdd -->
 
 <head>
     <meta charset="utf-8">
     <title>Titre de la page</title>
-    <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -24,6 +26,9 @@ include('../public/api/jsonUnicode.php');
     <?php
 
     $bdd = bddConnect();
+    //fait marcher la recurrence des événements
+    recurrence();
+    //si le role n'est pas déterminé, applique automatiquement le role de l'étudiant
     if (isset($_SESSION["pseudo"])) {
         $requeteAdmin = $bdd->prepare("SELECT role.id from utilisateur 
     join role on utilisateur.id_Role=role.id where utilisateur.pseudo=:pseudo
@@ -69,6 +74,7 @@ include('../public/api/jsonUnicode.php');
             if ($idAdmin[0]["id"] == "1" || $idAdmin[0]["id"] == "3") {
 
                 ?>
+                <a href="../public/scriptZip.php"><button>Telecharger photos format Zip</button></a>
                 <a href="../public/indexAddEvent.php"><button>Ajouter evenement</button></a>
                 <a href="../public/indexSupprEvent.php"><button>Supprimer evenement</button></a>
         <?php
@@ -97,8 +103,18 @@ include('../public/api/jsonUnicode.php');
                             <div onclick=<?php participer($bdd) ?>>
                                 <button type=submit name="participer" value=<?php echo ($evt['id']) ?>>
                                     participer
-                                </button></div>
+                                </button></div><?php
+                                                            if ($idAdmin[0]["id"] == "1" || $idAdmin[0]["id"] == "3") {
+
+
+                                                                ?>
+                                <form action="../script/scriptCSVInscrit.php" method="post">
+                                    <button name='event' value=<?php echo ($evt['id']); ?>>Telecharger inscrits csv</button>
+                                </form>
+
+
                 <?php
+                            }
                         }
                     }
                 }
@@ -120,7 +136,8 @@ include('../public/api/jsonUnicode.php');
                         printEvt($evtP);
 
                         ?>
-                        <a href=""><button>souvenirs</button></a>
+                        <button>souvenirs</button>
+
                 <?php
 
                     }
@@ -174,6 +191,8 @@ function participer($bdd)
         $requeteInscr = $bdd->prepare("SELECT * from evenementutilisateur where id_Utilisateur =:idUtilisateur and id_Evenement=:idEvenement");
         $requeteInscr->bindValue(':idUtilisateur', $idUt[0]['id'], PDO::PARAM_INT);
         $requeteInscr->bindValue(':idEvenement', $_POST['participer'], PDO::PARAM_INT);
+
+
         $requeteInscr->execute();
         $idInscr = $requeteInscr->fetchAll(pdo::FETCH_CLASS);
         $idInscr = objectToArray($idInscr);

@@ -9,7 +9,7 @@
 </head>
 <?php
 
-include('../includes/headerOn.html'); ?>
+include('../includes/header.php'); ?>
 
 <div class="row">
 

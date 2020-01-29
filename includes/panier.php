@@ -1,12 +1,10 @@
 <?php
 session_start();
 include('../public/api/jsonUnicode.php');
-$_SESSION['pseudo'] = "elise";
-$_SESSION['motDePasse'] = "mdp";
+
 
 if (
-    !isset($_SESSION['pseudo']) || !isset($_SESSION['motDePasse']) ||
-    empty($_SESSION['pseudo']) || empty($_SESSION['motDePasse'])
+    !isset($_SESSION['pseudo'])
 ) {
     header('Location:indexAccueil.php');
     exit();
@@ -38,6 +36,7 @@ if (
             commandearticle.id_Article=article.id where utilisateur.pseudo=:pseudo and commande.faite=0
             ");
             $requete->bindValue(':pseudo', $_SESSION["pseudo"], PDO::PARAM_STR);
+
 
             $requete->execute();
 
@@ -75,7 +74,7 @@ if (
 
                 <div id="total">Total : <?php echo ($total) ?>€
 
-                    <a href="">
+                    <a href="../script/scriptFinPanier.php">
                         <div class="noDecoration" id="payer">payer</div>
                     </a>
                 </div>

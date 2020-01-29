@@ -2,7 +2,7 @@
 
 ?>
 <!doctype html>
-
+<!-- Page d'inscription -->
 <html lang="fr">
 
 
