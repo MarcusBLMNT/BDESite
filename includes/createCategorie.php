@@ -14,7 +14,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     $requeteCreateCategorie->bindValue(':nomCategorie', utf8_decode($_POST['nomCatégorie']), PDO::PARAM_STR);
     $requeteCreateCategorie->execute();
-    echo ("<br>Catégorie '" . $_POST['nomCatégorie'] . "' créee  =)");
+    echo ("<br>Catégorie '" . $_POST['nomCatégorie'] . "' Catégorie crée");
 }
 ?>
 <!doctype html>

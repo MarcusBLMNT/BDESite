@@ -17,7 +17,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     $requeteDeleteSujet->bindValue(':idSujet', $_POST['sujet'], PDO::PARAM_STR);
     $requeteDeleteSujet->execute();
-    echo ("<br>Sujet supprimé =)");
+    echo ("<br>Le sujet a bien été supprimé");
 }
 ?>
 <!doctype html>
@@ -26,13 +26,16 @@ if (isset($_POST) && !empty($_POST)) {
 <head>
     <meta charset="utf-8">
     <title>Titre de la page</title>
-
+<link rel="stylesheet" href="../public/css/deleteCategory.css">
 </head>
 
+
 <body>
-    Supprimes un sujet
+    <h2>Supprimer un sujet</h2>
     <form method="POST">
-        <select name="sujet">
+        <table>
+        <tr>
+         <td><select name="sujet">
             <?php
             foreach ($requete as $sujet) { ?>
                 <option value="<?php echo ($sujet['id']); ?>">
@@ -44,10 +47,10 @@ if (isset($_POST) && !empty($_POST)) {
                             }
 
             ?>
-        </select>
+        </select></td>
+      </tr>
+  </table>
         <button type="submit">Supprimer</button>
-
     </form>
 </body>
-
 </html>

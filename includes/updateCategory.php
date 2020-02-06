@@ -28,13 +28,15 @@ if (isset($_POST) && !empty($_POST)) {
 <head>
     <meta charset="utf-8">
     <title>Titre de la page</title>
-
+<link rel="stylesheet" href="../public/css/updateCategory.css">
 </head>
 
 <body>
-    Modifies une catégorie
+    <h2>Modifier une catégorie</h2>
     <form method="POST">
-        <select name="categorie">
+        <table>
+        <tr>
+         <td><select name="categorie">
             <?php
             foreach ($requete as $categorie) { ?>
                 <option value="<?php echo ($categorie['id']); ?>">
@@ -46,11 +48,11 @@ if (isset($_POST) && !empty($_POST)) {
                             }
 
             ?>
-        </select>
-        <input type="text" name="nomCategorie" placeholder="nomCatégorie" required="required" pattern="[^ ]*">
+        </select></td>
+      </tr>
+  </table>
+        <input type="text" name="Nom de la catégorie" placeholder="Nom de la catégorie" required="required" pattern="[^ ]*"></br>
         <button type="submit">Modifier</button>
-
     </form>
 </body>
-
 </html>

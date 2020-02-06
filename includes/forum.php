@@ -1,3 +1,5 @@
+ <link rel="stylesheet" href="../public/css/forum.css">
+
 <?php
 require 'bddconnect.php';
 $bdd = bddConnect();
@@ -27,18 +29,19 @@ if (isset($_POST['filtre']) && !empty($_POST['filtre'])) {
         <?php
         if ($statut > 0) {
         ?>
-            <a href="indexCreateSubject.php">Créer sujet</a>
+            <a href="indexCreateSubject.php"><input type="button"  value="Créer sujet"></a>
 
         <?php
         }
         if ($statut > 1) {
         ?>
-            <a href="indexCreateCategorie.php">Créer catégorie</a>
-            <a href="indexDeleteCategory.php">Supprimer une catégorie</a>
-            <a href="indexUpdateCategory.php">Modifier une catégorie</a>
-            <a href="indexDeleteSujet.php">Supprimer un sujet</a>
-            <a href="indexUpdateSujet.php">Editer un sujet</a>
-            <a href="indexBannir.php">Bannir un étudiant</a>
+
+            <a href="indexCreateCategorie.php"><input type="button"  value="Créer catégorie"></a>
+            <a href="indexDeleteCategory.php"><input type="button"  value="Supprimer une catégorie"></a>
+            <a href="indexUpdateCategory.php"><input type="button"  value="Modifier une catégorie"></a>
+            <a href="indexDeleteSujet.php"><input type="button"  value="Supprimer un sujet"></a>
+            <a href="indexUpdateSujet.php"><input type="button"  value="Editer un sujet"></a>
+            <a href="indexBannir.php"><input type="button"  value="Bannir un étudiant"></a>
         <?php
 
         }

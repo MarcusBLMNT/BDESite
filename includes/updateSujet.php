@@ -19,7 +19,7 @@ if (isset($_POST) && !empty($_POST)) {
     $requeteDeleteCategory->bindValue(':idsujet', $_POST['sujet'], PDO::PARAM_STR);
     $requeteDeleteCategory->bindValue(':nomsujet', utf8_decode($_POST['nomsujet']), PDO::PARAM_STR);
     $requeteDeleteCategory->execute();
-    echo ("<br>Sujet Modifiée =)");
+    echo ("<br>Sujet Modifié");
 }
 ?>
 <!doctype html>
@@ -28,13 +28,14 @@ if (isset($_POST) && !empty($_POST)) {
 <head>
     <meta charset="utf-8">
     <title>Titre de la page</title>
-
+<link rel="stylesheet" href="../public/css/updateSubject.css">
 </head>
-
 <body>
-    Modifie un sujet
+    <h2>Modifier un sujet</h2>
     <form method="POST">
-        <select name="sujet">
+        <table>
+        <tr>
+         <td><select name="sujet">
             <?php
             foreach ($requete as $sujet) { ?>
                 <option value="<?php echo ($sujet['id']); ?>">
@@ -46,11 +47,11 @@ if (isset($_POST) && !empty($_POST)) {
                             }
 
             ?>
-        </select>
-        <input type="text" name="nomsujet" placeholder="nouveau nom" required="required">
+        </select></td>
+      </tr>
+  </table>
+        <input type="text" name="nomsujet" placeholder="Nouveau nom" required="required">
         <button type="submit">Modifier</button>
-
     </form>
 </body>
-
 </html>

@@ -21,7 +21,7 @@ if (isset($_POST) && !empty($_POST)) {
     $requetePostSujet->bindValue(':idCategorie', $_POST['categorie'], PDO::PARAM_STR);
     $requetePostSujet->bindValue(':idUtilisateur', getIdUser(), PDO::PARAM_STR);
     $requetePostSujet->execute();
-    echo ("Sujet posté =)");
+    echo ("Sujet posté");
 }
 ?>
 <!doctype html>
